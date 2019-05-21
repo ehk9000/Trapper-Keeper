@@ -9,12 +9,25 @@ class NoteForm extends Component {
       list: []
     }
   }
+
+  handleChange = (e) => {
+    const { name, value } = e;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
   render() {
     return (
       <section>
-
+        <input 
+          type="text" 
+          placeholder="Title"
+          name="title"
+          onChange={this.handleChange} />
       </section>
-    )
+    );
   }
 }
 
