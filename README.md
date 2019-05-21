@@ -43,6 +43,8 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 ## WireFrame
 [![wireframe1.jpg](https://i.postimg.cc/BvM2W6QK/wireframe1.jpg)](https://postimg.cc/mc1PCT9L)
 [![wireframe2.jpg](https://i.postimg.cc/m2CdvYx1/wireframe2.jpg)](https://postimg.cc/vc8L96ZG) 
+<img width="946" alt="Screen Shot 2019-05-21 at 5 11 14 PM" src="https://user-images.githubusercontent.com/41968928/58136544-aa86c200-7beb-11e9-87f2-17d3e05dc216.png">
+<img width="941" alt="Screen Shot 2019-05-21 at 5 11 43 PM" src="https://user-images.githubusercontent.com/41968928/58136546-abb7ef00-7beb-11e9-8495-f9b87fa10184.png">
 
 
 
