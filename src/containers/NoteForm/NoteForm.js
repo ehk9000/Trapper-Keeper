@@ -13,9 +13,18 @@ class NoteForm extends Component {
 
   handleChange = (e) => {
     const { name, value } = e.target;
-
+    
     this.setState({
       [name]: value
+    });
+  }
+
+  handleBlur = (e) => {
+    const newItem = e.target.value;
+
+    this.setState({
+      listItem: '',
+      list: [...this.state.list, newItem]
     });
   }
 
@@ -37,7 +46,8 @@ class NoteForm extends Component {
         placeholder="List item"
         name="listItem"
         onChange={this.handleChange}
-        onKeyPress={this.updateList} />
+        onKeyPress={this.updateList}
+        onBlur={this.handleBlur} />
 
     return (
       <section>
