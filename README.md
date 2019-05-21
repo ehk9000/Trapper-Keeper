@@ -47,6 +47,6 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 
 ## Collaborators
-[Erik Konner](https://github.com/ehk9000)
-[Tiffany Bacher](https://github.com/tiffanybacher)
-[Kristen Hallstrom](https://github.com/Klhalls89)
+* [Erik Konner](https://github.com/ehk9000)
+* [Tiffany Bacher](https://github.com/tiffanybacher)
+* [Kristen Hallstrom](https://github.com/Klhalls89)
