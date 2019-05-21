@@ -1,4 +1,5 @@
 import React from 'react';
+import NoteForm from '../NoteForm/NoteForm';
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
         <h1>
           Trapper Keeper!
         </h1>
+        <NoteForm />
       </header>
     </div>
   );
