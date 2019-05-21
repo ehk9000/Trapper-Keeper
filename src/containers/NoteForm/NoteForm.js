@@ -6,13 +6,16 @@ class NoteForm extends Component {
     super();
     this.state = {
       title: '',
+      listItem: '',
       list: []
     }
   }
 
-  updateTitle = (e) => {
+  handleChange = (e) => {
+    const { name, value } = e.target;
+
     this.setState({
-      title: e.target.value
+      [name]: value
     });
   }
 
@@ -21,6 +24,7 @@ class NoteForm extends Component {
       const newItem = e.target.value;
 
       this.setState({
+        listItem: '',
         list: [...this.state.list, newItem]
       });
     }
@@ -31,6 +35,8 @@ class NoteForm extends Component {
       <input 
         type="text"
         placeholder="List item"
+        name="listItem"
+        onChange={this.handleChange}
         onKeyPress={this.updateList} />
 
     return (
@@ -38,8 +44,9 @@ class NoteForm extends Component {
         <input 
           type="text" 
           placeholder="Title"
+          name="title"
           value={this.state.title}
-          onChange={this.updateTitle} />
+          onChange={this.handleChange} />
         {itemInput}
       </section>
     );
