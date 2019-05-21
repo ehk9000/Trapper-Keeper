@@ -10,22 +10,37 @@ class NoteForm extends Component {
     }
   }
 
-  handleChange = (e) => {
-    const { name, value } = e;
-
+  updateTitle = (e) => {
     this.setState({
-      [name]: value
+      title: e.target.value
     });
   }
 
+  updateList = (e) => {
+    if (e.key === 'Enter') {
+      const newItem = e.target.value;
+
+      this.setState({
+        list: [...this.state.list, newItem]
+      });
+    }
+  }
+
   render() {
+    const itemInput = 
+      <input 
+        type="text"
+        placeholder="List item"
+        onKeyPress={this.updateList} />
+
     return (
       <section>
         <input 
           type="text" 
           placeholder="Title"
-          name="title"
-          onChange={this.handleChange} />
+          value={this.state.title}
+          onChange={this.updateTitle} />
+        {itemInput}
       </section>
     );
   }
