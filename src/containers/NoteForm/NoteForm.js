@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import  PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as actions from '../../actions'
 
 class NoteForm extends Component {
   constructor() {
     super();
     this.state = {
       title: '',
-      listItem: '',
-      list: []
+      list: [],
+      listItem: ''
     }
   }
 
@@ -17,15 +19,17 @@ class NoteForm extends Component {
     this.setState({
       [name]: value
     });
+
   }
 
-  updateList = (e) => {
-    const newItem = e.target.value;
+  updateList = async () => {
+    const newItem = this.state.listItem;
 
-    this.setState({
-      listItem: '',
-      list: [...this.state.list, newItem]
+    await this.setState({
+      list: [...this.state.list, { item: newItem, completed: false, id: Date.now() }],
+      listItem: ''
     });
+    this.props.addNote({ title: this.state.title, list: this.state.list, id: Date.now() });
   }
 
   handleKeyPress = (e) => {
@@ -40,12 +44,12 @@ class NoteForm extends Component {
         type="text"
         placeholder="List item"
         name="listItem"
+        value={this.state.listItem}
         onChange={this.handleChange}
-        onKeyPress={this.handleKeyPress}
-        onBlur={this.updateList} />
+        onKeyPress={this.handleKeyPress} />
 
     return (
-      <section>
+      <section className="noteForm">
         <input 
           type="text" 
           placeholder="Title"
@@ -53,12 +57,24 @@ class NoteForm extends Component {
           value={this.state.title}
           onChange={this.handleChange} />
         {itemInput}
+        <button onClick={this.updateList}><i className="fas fa-plus"></i></button>
       </section>
     );
   }
 }
 
-export default NoteForm;
+export const mapStateToProps = ({notes}) => ({
+  notes
+})
+
+export const mapDispatchToProps = dispatch => ({
+  addNote: note => dispatch(actions.addNote(note)),
+  setNoteTitle: title => dispatch(actions.setNoteTitle(title))
+})
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
 
 NoteForm.propTypes = {
   title: PropTypes.string,
