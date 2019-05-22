@@ -62,6 +62,7 @@ export default NoteForm;
 
 NoteForm.propTypes = {
   title: PropTypes.string,
+  listItem: PropTypes.string,
   list: PropTypes.array
 }
 
