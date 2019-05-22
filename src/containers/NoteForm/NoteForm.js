@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import  PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { getNotes } from '../../actions/index';
 
 class NoteForm extends Component {
   constructor() {
@@ -27,7 +28,7 @@ class NoteForm extends Component {
       listItem: '',
       list: [...this.state.list, newItem]
     });
-    // this.props.getNotes(this.state.list)
+    this.props.getNotes(this.state.list)
   }
 
   handleKeyPress = (e) => {
