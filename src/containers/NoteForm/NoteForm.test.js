@@ -2,13 +2,54 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 import { NoteForm, mapDispatchToProps, mapStateToProps} from './NoteForm';
+import * as actions from '../../actions'
 
 describe('NoteForm', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow( <NoteForm />)
-  })
+    wrapper = shallow(
+      <NoteForm />
+    );
+  });
+
+  it('should render correctly', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should have a default state', () => {
+    expect(wrapper.state()).toEqual({
+      title: '',
+      listItem: '',
+      list: []
+    });
+  });
+
+  it('should update title or list item with keypress', () => {
+    expect(wrapper.state('title')).toEqual('');
+
+    const mockEvent = {
+      target: { name: 'title', value: 'this is a title' }
+    }
+
+    wrapper.instance().handleChange(mockEvent);
+
+    expect(wrapper.state('title')).toEqual('this is a title');
+  });
+
+  it.skip('should update list with item input', async () => {
+    expect(wrapper.state('listItem')).toEqual('')
+
+    const mockEvent = { 
+      key: 'Enter', 
+      target: { value: 'this is a list item' }
+    }
+
+    wrapper.instance().handleKeyPress(mockEvent);
+    wrapper.instance().updateList();
+
+    expect(wrapper.state('list.item')).toEqual('this is a list item')
+  });
 
   describe('mapStateToProps', () => {
     it('should return a props object with the notes array', () => {
@@ -29,4 +70,7 @@ describe('NoteForm', () => {
 
     })
   })
-})
+});
+
+
+
