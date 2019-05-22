@@ -1,7 +1,7 @@
 export const noteListReducer = (state = [], action) => {
   switch (action.type) {
-    case 'GET_NOTES':
-      return action.notes
+    case 'ADD_NOTE':
+      return [...state, action.note]
     default: 
     return state
   }

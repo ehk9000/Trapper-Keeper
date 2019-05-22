@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import  PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getNotes } from '../../actions/index';
+import * as actions from '../../actions'
 
 class NoteForm extends Component {
   constructor() {
     super();
     this.state = {
       title: '',
-      listItem: '',
-      list: []
+      list: [],
+      listItem: ''
     }
   }
 
@@ -19,29 +19,23 @@ class NoteForm extends Component {
     this.setState({
       [name]: value
     });
+
   }
 
-  updateList = (e) => {
-    const newItem = e.target.value;
+  updateList = async () => {
+    const newItem = this.state.listItem;
 
-    this.setState({
-      listItem: '',
-      list: [...this.state.list, newItem]
+    await this.setState({
+      list: [...this.state.list, { item: newItem, completed: false, id: Date.now() }],
+      listItem: ''
     });
-    this.props.getNotes(this.state.list)
+    this.props.addNote({ title: this.state.title, list: this.state.list, id: Date.now() });
   }
 
   handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       this.updateList(e);
     }
-  }
-
-  onClick = () => {
-    this.setState({
-      title: '',
-      listItem: ''
-    })
   }
 
   render() {
@@ -52,8 +46,7 @@ class NoteForm extends Component {
         name="listItem"
         value={this.state.listItem}
         onChange={this.handleChange}
-        onKeyPress={this.handleKeyPress}
-        onBlur={this.updateList} />
+        onKeyPress={this.handleKeyPress} />
 
     return (
       <section className="noteForm">
@@ -64,7 +57,7 @@ class NoteForm extends Component {
           value={this.state.title}
           onChange={this.handleChange} />
         {itemInput}
-        <button onClick={this.onClick}><i className="fas fa-plus"></i></button>
+        <button onClick={this.updateList}><i className="fas fa-plus"></i></button>
       </section>
     );
   }
@@ -75,7 +68,8 @@ export const mapStateToProps = ({notes}) => ({
 })
 
 export const mapDispatchToProps = dispatch => ({
-  getNotes: list => dispatch(getNotes(list))
+  addNote: note => dispatch(actions.addNote(note)),
+  setNoteTitle: title => dispatch(actions.setNoteTitle(title))
 })
 
 
