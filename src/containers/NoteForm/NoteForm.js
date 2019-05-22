@@ -53,7 +53,7 @@ class NoteForm extends Component {
         onBlur={this.updateList} />
 
     return (
-      <section>
+      <section className="noteForm">
         <input 
           type="text" 
           placeholder="Title"
@@ -61,7 +61,7 @@ class NoteForm extends Component {
           value={this.state.title}
           onChange={this.handleChange} />
         {itemInput}
-        <button onClick={this.onClick}>add</button>
+        <button onClick={this.onClick}><i className="fas fa-plus"></i></button>
       </section>
     );
   }
