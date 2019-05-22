@@ -34,12 +34,20 @@ class NoteForm extends Component {
     }
   }
 
+  onClick = () => {
+    this.setState({
+      title: '',
+      listItem: ''
+    })
+  }
+
   render() {
     const itemInput = 
       <input 
         type="text"
         placeholder="List item"
         name="listItem"
+        value={this.state.listItem}
         onChange={this.handleChange}
         onKeyPress={this.handleKeyPress}
         onBlur={this.updateList} />
@@ -53,6 +61,7 @@ class NoteForm extends Component {
           value={this.state.title}
           onChange={this.handleChange} />
         {itemInput}
+        <button onClick={this.onClick}>add</button>
       </section>
     );
   }
