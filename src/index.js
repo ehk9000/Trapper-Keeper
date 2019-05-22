@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
-import {rootReducer} from './reducers/index';
+import { rootReducer } from './reducers/index';
 import './styles/index.scss';
 import App from './containers/App/App';
 

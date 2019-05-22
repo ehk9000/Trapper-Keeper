@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import  PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class NoteForm extends Component {
   constructor() {
@@ -26,6 +27,7 @@ class NoteForm extends Component {
       listItem: '',
       list: [...this.state.list, newItem]
     });
+    // this.props.getNotes(this.state.list)
   }
 
   handleKeyPress = (e) => {
@@ -58,7 +60,17 @@ class NoteForm extends Component {
   }
 }
 
-export default NoteForm;
+export const mapStateToProps = ({notes}) => ({
+  notes
+})
+
+export const mapDispatchToProps = dispatch => ({
+  getNotes: list => dispatch(getNotes(list))
+})
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
 
 NoteForm.propTypes = {
   title: PropTypes.string,
