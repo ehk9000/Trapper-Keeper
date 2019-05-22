@@ -1,3 +1,21 @@
-body {
-  font-family: "Roboto", sans-serif;
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  font-family: $mainFont;
+
+  h1 {
+    .fas {
+      color: $gold;
+      height: 40px;
+      width: 40px;
+    }
+    
+    font-size: 27px;
+    color: $dkGrey;
+    font-weight: 300;
+    padding-left: 4px;
+
+  }
 }
