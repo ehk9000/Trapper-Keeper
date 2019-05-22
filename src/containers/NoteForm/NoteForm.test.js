@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import NoteForm from './NoteForm';
 
-describe('NotForm', () => {
+describe('NoteForm', () => {
   let wrapper;
 
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('NotForm', () => {
 
   it('should render correctly', () => {
     expect(wrapper).toMatchSnapshot();
-  }
+  });
 
   it('should have a default state', () => {
     expect(wrapper.state()).toEqual({
