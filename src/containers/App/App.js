@@ -6,7 +6,8 @@ function App() {
     <div className="App">
       <header>
         <h1>
-          Trapper Keeper!
+          <i className="fas fa-edit"></i>
+          Trapper Keeper
         </h1>
         <NoteForm />
       </header>
