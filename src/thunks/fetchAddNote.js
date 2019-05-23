@@ -1,4 +1,4 @@
-import { addNote } from '../actions/index';
+import { addNote, setLoading } from '../actions/index';
 
 export const fetchAddNote = (note) => {
   return async (dispatch) => {
@@ -15,6 +15,8 @@ export const fetchAddNote = (note) => {
     }
 
     try {
+      dispatch(setLoading(true));
+
       const response = await fetch(url, options);
 
       if (!response.ok) {
@@ -24,6 +26,7 @@ export const fetchAddNote = (note) => {
       const note = await response.json();
 
       dispatch(addNote(note));
+      dispatch(setLoading(false));
     } catch (error) {
       console.log('Error adding note');
     }
