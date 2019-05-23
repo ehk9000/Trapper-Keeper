@@ -31,7 +31,7 @@ class NotesContainer extends Component {
     } 
 
     return (
-      <section>
+      <section className="notes-container">
         {displayNotes}
         {notePopup}
       </section>
