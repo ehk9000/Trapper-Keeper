@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAllNotes } from '../../thunks/fetchAllNotes';
 import Note from '../../components/Note/Note';
+import NoteForm from '../NoteForm/NoteForm'
 
 class NotesContainer extends Component {
 
@@ -23,12 +24,16 @@ class NotesContainer extends Component {
     }
 
     if (this.props.location.pathname === "/new-note") {
-      console.log('newNote')
-    }
+      notePopup = 
+      <div className="popup-background">
+        <NoteForm />
+      </div>
+    } 
 
     return (
       <section>
         {displayNotes}
+        {notePopup}
       </section>
     )
   }
