@@ -3,7 +3,7 @@ import  PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../actions'
 
-class NoteForm extends Component {
+export class NoteForm extends Component {
   constructor() {
     super();
     this.state = {
