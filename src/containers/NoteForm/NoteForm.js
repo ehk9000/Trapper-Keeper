@@ -74,7 +74,7 @@ export class NoteForm extends Component {
     }
 
     return (
-      <section className="noteForm">
+      <section className="note-form">
         <input 
           type="text" 
           placeholder="Title"

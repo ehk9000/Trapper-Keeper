@@ -7,12 +7,12 @@ const Note = (props) => {
     return <p>{item.item}</p>
   })
   return(
-      <Link to={`/notes/${id}`} > 
-        <article>
-          <h1>{title}</h1>
-          {listItems}
-        </article>
-      </Link>
+    <Link to={`/notes/${id}`} className='note-card'> 
+      <article>
+        <h1>{title}</h1>
+        {listItems}
+      </article>
+    </Link>
   )
 }
 
