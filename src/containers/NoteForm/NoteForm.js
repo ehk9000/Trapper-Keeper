@@ -10,13 +10,19 @@ export class NoteForm extends Component {
     this.state = {
       title: '',
       list: [],
-      listItem: ''
+      listItem: '',
+      id: null
+    }
+  }
+
+  componentDidMount() {
+    if(this.props.note.id) {
+      this.setState({list: this.props.note.list, title: this.props.note.title, id: this.props.note.id})
     }
   }
 
   handleChange = (e) => {
     const { name, value } = e.target;
-    
     this.setState({
       [name]: value
     });

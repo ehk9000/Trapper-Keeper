@@ -23,12 +23,27 @@ class NotesContainer extends Component {
       displayNotes = <h3>Add Notes Here</h3>
     }
 
-    if (this.props.location.pathname === "/new-note") {
+    if (this.props.location.pathname === "/new-note" ) {
       notePopup = 
       <div className="popup-background">
         <NoteForm />
       </div>
     } 
+
+    if(this.props.location.pathname.includes('/notes/')) {
+      const id = this.props.location.pathname.split("/")[2]
+      const match = this.props.notes.find(note => {
+        if (note.id == id) {
+          return note 
+        }
+      })
+      if (match !== undefined) {
+        notePopup = 
+        <div className="popup-background">
+          <NoteForm note={match} />
+        </div>
+      }
+    }
 
     return (
       <section>
