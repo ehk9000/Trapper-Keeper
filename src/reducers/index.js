@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
-import { noteListReducer } from './noteReducer'
+import { notesReducer } from './notesReducer';
+import { isLoadingReducer } from './isLoadingReducer';
+import { errorReducer } from './errorReducer';
 
 export const rootReducer = combineReducers({
-  notes: noteListReducer,
+  notes: notesReducer,
+  isLoading: isLoadingReducer,
+  error: errorReducer
 });
