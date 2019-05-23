@@ -50,7 +50,7 @@ export class NoteForm extends Component {
         onKeyPress={this.handleKeyPress} />
 
     return (
-      <section className="noteForm">
+      <section className="note-form">
         <input 
           type="text" 
           placeholder="Title"

@@ -9,7 +9,7 @@ class NotesContainer extends Component {
   }
 
   render() {
-    let { notes } = props
+    let { notes } = this.props
     if(notes) {  
       let displayNotes = notes.map(note => {
         return (
@@ -17,13 +17,13 @@ class NotesContainer extends Component {
         )
       })
       return(
-        <div>
+        <div className="notes-container">
           {displayNotes}
         </div>
       )
     } else {
       return(
-        <div>
+        <div className="notes-container">
           display Notes here
         </div>
       )

@@ -6,10 +6,10 @@ const Note = (props) => {
     return <p>item</p>
   })
   return(
-    <div>
+    <article className="note-card">
       <h1>{title}</h1>
       {listItems}
-    </div>
+    </article>
   )
 }
 
