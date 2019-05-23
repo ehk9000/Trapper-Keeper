@@ -4,6 +4,9 @@ import { shallow } from 'enzyme';
 import { NoteForm, mapDispatchToProps, mapStateToProps} from './NoteForm';
 import * as actions from '../../actions'
 
+const addNote = jest.fn();
+const setNoteTitle = jest.fn();
+
 describe('NoteForm', () => {
   let wrapper;
 
@@ -67,7 +70,42 @@ describe('NoteForm', () => {
       const mappedProps = mapStateToProps(mockNotes)
 
       expect(mappedProps).toEqual(expected)
+    })
+  })
+  describe('mapDispatchToProps', () => {
+    it('should call a dispatch when using a function from MDTP', () => {
+      const mockDispatch = jest.fn();
+      const mockNotes = {
+        notes: [{
+          title: 'groceries',
+          list:[{item: 'milk', id: 122523453}, {item: 'eggs', id:12312321}]
+          }]
+        }
 
+      const actionToDispatch = actions.addNote(mockNotes)
+
+      const mappedProps = mapDispatchToProps(mockDispatch)
+
+      mappedProps.addNote(mockNotes)
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+
+    it.skip('should call a dispatch when using a function from MDTP', () => {
+      const mockDispatch = jest.fn();
+
+      const mockNotes = {
+        notes: [{
+          title: 'groceries',
+          list:[{item: 'milk', id: 122523453}, {item: 'eggs', id:12312321}]
+          }]
+        }
+      const actionToDispatch = actions.setNoteTitle(mockNotes)
+
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      mappedProps.addNote(mockNotes)
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
   })
 });
