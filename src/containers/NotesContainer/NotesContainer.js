@@ -2,32 +2,40 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAllNotes } from '../../thunks/fetchAllNotes';
 import Note from '../../components/Note/Note';
+import NoteForm from '../NoteForm/NoteForm'
 
 class NotesContainer extends Component {
+
   componentDidMount() {
     this.props.fetchAllNotes();
   }
 
   render() {
+    let displayNotes;
     let { notes } = this.props
-    if(notes) {  
-      let displayNotes = notes.map(note => {
-        return (
-            <Note {...note}/>
-        )
-      })
-      return(
-        <div className="notes-container">
-          {displayNotes}
-        </div>
+    let notePopup;
+
+    if (notes) {  
+      displayNotes = notes.map(note => 
+        <Note {...note} key={note.id}/>
       )
     } else {
-      return(
-        <div className="notes-container">
-          display Notes here
-        </div>
-      )
+      displayNotes = <h3>Add Notes Here</h3>
     }
+
+    if (this.props.location.pathname === "/new-note") {
+      notePopup = 
+      <div className="popup-background">
+        <NoteForm />
+      </div>
+    } 
+
+    return (
+      <section>
+        {displayNotes}
+        {notePopup}
+      </section>
+    )
   }
 }
 

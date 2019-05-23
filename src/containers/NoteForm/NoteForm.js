@@ -22,15 +22,18 @@ export class NoteForm extends Component {
     });
   }
 
+  handleSave = async () => {
+    await this.updateList();
+    this.props.fetchAddNote({ title: this.state.title, list: this.state.list, id: Date.now() });
+    this.setState({list:[], title: ''})
+  }
+
   updateList = async () => {
     const newItem = this.state.listItem;
-
     await this.setState({
       list: [...this.state.list, { item: newItem, completed: false, id: Date.now() }],
       listItem: ''
     });
-
-    this.props.fetchAddNote({ title: this.state.title, list: this.state.list, id: Date.now() });
   }
 
   handleKeyPress = (e) => {
@@ -58,7 +61,7 @@ export class NoteForm extends Component {
           value={this.state.title}
           onChange={this.handleChange} />
         {itemInput}
-        <button onClick={this.updateList}><i className="fas fa-plus"></i></button>
+        <button onClick={this.handleSave}><i className="fas fa-plus"></i></button>
       </section>
     );
   }
@@ -70,7 +73,7 @@ export const mapStateToProps = ({notes}) => ({
 
 export const mapDispatchToProps = dispatch => ({
   fetchAddNote: note => dispatch(fetchAddNote(note)),
-  setNoteTitle: title => dispatch(actions.setNoteTitle(title))
+  updateNote: note => dispatch(actions.updateNote(note))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
