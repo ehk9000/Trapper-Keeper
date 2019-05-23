@@ -1,15 +1,13 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
-import NoteForm from '../../containers/NoteForm/NoteForm'
-import NoteDetails from '../NoteDetails/NoteDetails'
+import NotesContainer from '../../containers/NotesContainer/NotesContainer'
 
 export const Controls = () => {
   return (
     <section>
-
-      {/* <Route exact path="/" Component={NoteContainer} /> */}
-      <Route exact path="/new-note" Component={NoteForm} />
-      <Route exact path="/notes/:id" Component={NoteDetails} />
+      <Route exact path="/" component={NotesContainer} />
+      <Route exact path="/new-note" component={NotesContainer} />
+      <Route exact path="/notes/:id" component={NotesContainer} />
     </section>
 
   )
