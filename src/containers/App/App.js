@@ -1,7 +1,6 @@
 import React from 'react';
 import NoteForm from '../NoteForm/NoteForm';
-import NotesContainer from '../NotesContainer/NotesContainer'
-
+import NotesContainer from '../NotesContainer/NotesContainer';
 
 function App() {
   return (

@@ -1,33 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchAllNotes } from '../../thunks/fetchAllNotes';
 import Note from '../../components/Note/Note';
 
-const NotesContainer = (props) => {
-  let { notes } = props
-  if(props.notes){  
-    let displayNotes = notes.map(note => {
-      return (
-        <div>
-          <Note {...note}/>
-        </div>
-      )
-    })
-     return(
+class NotesContainer extends Component {
+  componentDidMount() {
+    this.props.fetchAllNotes();
+  }
+
+  render() {
+    let { notes } = props
+    if(notes) {  
+      let displayNotes = notes.map(note => {
+        return (
+            <Note {...note}/>
+        )
+      })
+      return(
         <div>
           {displayNotes}
         </div>
       )
-  } else {
+    } else {
       return(
         <div>
           display Notes here
         </div>
       )
     }
+  }
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = state => ({
   notes: state.notes
-})
+});
 
-export default connect(mapStateToProps)(NotesContainer)
+export const mapDispatchToProps = dispatch => ({
+  fetchAllNotes: () => dispatch(fetchAllNotes())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NotesContainer);
