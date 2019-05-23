@@ -22,3 +22,8 @@ export const setLoading = (bool) => ({
   type: 'SET_LOADING',
   isLoading: bool
 });
+
+export const setError = (error) => ({
+  type: 'SET_ERROR',
+  error
+});

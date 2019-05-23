@@ -1,4 +1,4 @@
-import { addNote, setLoading } from '../actions/index';
+import { addNote, setLoading, setError } from '../actions/index';
 
 export const fetchAddNote = (note) => {
   return async (dispatch) => {
@@ -11,7 +11,7 @@ export const fetchAddNote = (note) => {
     const options = {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify(body)
+      body: body
     }
 
     try {
@@ -28,7 +28,7 @@ export const fetchAddNote = (note) => {
       dispatch(addNote(note));
       dispatch(setLoading(false));
     } catch (error) {
-      console.log('Error adding note');
+      dispatch(setError(error.message));
     }
   }
 }
