@@ -3,20 +3,25 @@ export const addNote = (note) => ({
   note
 });
 
-export const setNoteTitle = (title) => ({
-  type: 'SET_NOTE_TITLE',
-  title
+export const updateNote = (note) => ({
+  type: 'UPDATE_NOTE',
+  note
 });
 
-export const setListItem = (item) => ({
-  type: 'SET_LIST_ITEM',
-  item
-});
+// export const setNoteTitle = (title) => ({
+//   type: 'SET_NOTE_TITLE',
+//   title
+// });
 
-export const toggleComplete = (bool) => ({
-  type: 'TOGGLE_COMPLETE',
-  complete: bool
-});
+// export const setListItem = (item) => ({
+//   type: 'SET_LIST_ITEM',
+//   item
+// });
+
+// export const toggleComplete = (bool) => ({
+//   type: 'TOGGLE_COMPLETE',
+//   complete: bool
+// });
 
 export const setLoading = (bool) => ({
   type: 'SET_LOADING',
