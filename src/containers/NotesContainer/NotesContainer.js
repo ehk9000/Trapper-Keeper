@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAllNotes } from '../../thunks/fetchAllNotes';
+import Note from '../../components/Note/Note';
 
 class NotesContainer extends Component {
   componentDidMount() {
@@ -8,15 +9,25 @@ class NotesContainer extends Component {
   }
 
   render() {
-    const titles = this.props.notes.map(note => 
-      <h2>{note.title}</h2>
-    )
-
-    return(
-      <section>
-        {titles}
-      </section>
-    )
+    let { notes } = props
+    if(notes) {  
+      let displayNotes = notes.map(note => {
+        return (
+            <Note {...note}/>
+        )
+      })
+      return(
+        <div>
+          {displayNotes}
+        </div>
+      )
+    } else {
+      return(
+        <div>
+          display Notes here
+        </div>
+      )
+    }
   }
 }
 

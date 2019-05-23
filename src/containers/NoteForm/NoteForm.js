@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { fetchAddNote } from '../../thunks/fetchAddNote';
 
-class NoteForm extends Component {
+export class NoteForm extends Component {
   constructor() {
     super();
     this.state = {

@@ -2,7 +2,7 @@ import * as actions from './index'
 
 describe('actions', () => {
   it('should return a type of GET_NOTES with a notes array', () => {
-    const notes = [
+    const note = [
       {
       title: 'Groceries',
       listItem: 'blah blah'}, 
@@ -12,11 +12,11 @@ describe('actions', () => {
     }
   ]
   const expected  = {
-    type: 'GET_NOTES',
-    notes
+    type: 'ADD_NOTE',
+    note
   }
 
-  const result = actions.getNotes(notes)
+  const result = actions.addNote(note)
 
   expect(result).toEqual(expected)
 
