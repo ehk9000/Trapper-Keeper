@@ -11,7 +11,7 @@ export const fetchAddNote = (note) => {
     const options = {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
-      body: body
+      body: JSON.stringify(body)
     }
 
     try {
