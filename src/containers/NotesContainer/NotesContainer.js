@@ -30,7 +30,7 @@ class NotesContainer extends Component {
       </div>
     } 
 
-    if(location.pathname.includes('/notes/')) {
+    if (location.pathname.includes('/notes/')) {
       const id = location.pathname.split("/")[2]
       const match = notes.find(note => {
         if (note.id == id) {
