@@ -17,3 +17,8 @@ export const toggleComplete = (bool) => ({
   type: 'TOGGLE_COMPLETE',
   complete: bool
 });
+
+export const setLoading = (bool) => ({
+  type: 'SET_LOADING',
+  isLoading: bool
+});
