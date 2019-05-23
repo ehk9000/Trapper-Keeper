@@ -17,7 +17,7 @@ export class NoteForm extends Component {
   }
 
   componentDidMount() {
-    if(this.props.note) {
+    if (this.props.note) {
       const {id, title, list} = this.props.note
       this.setState({list, title, id})
     }
@@ -31,9 +31,17 @@ export class NoteForm extends Component {
   }
 
   handleSave = async () => {
+    const { title, list, id } = this.state;
+
     await this.updateList();
-    this.props.fetchAddNote({ title: this.state.title, list: this.state.list, id: Date.now() });
-    this.setState({list:[], title: ''})
+
+    if (this.state.id) {
+      this.props.updateNote({ title, list, id });
+    } else {
+      this.props.fetchAddNote({ title, list, id: Date.now() });
+    }
+
+    this.setState({ list:[], title: '' });
   }
 
   updateList = async () => {
@@ -83,12 +91,12 @@ export class NoteForm extends Component {
 
 export const mapStateToProps = ({notes}) => ({
   notes
-})
+});
 
 export const mapDispatchToProps = dispatch => ({
   fetchAddNote: note => dispatch(fetchAddNote(note)),
-  updateNote: note => dispatch(actions.updateNote(note))
-})
+  updateNote: note => dispatch(actions.updateNote(note)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
 
