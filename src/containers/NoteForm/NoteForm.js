@@ -16,8 +16,9 @@ export class NoteForm extends Component {
   }
 
   componentDidMount() {
-    if(this.props.note.id) {
-      this.setState({list: this.props.note.list, title: this.props.note.title, id: this.props.note.id})
+    const {id, title, list} = this.props.note
+    if(id) {
+      this.setState({list, title, id})
     }
   }
 
