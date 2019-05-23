@@ -1,5 +1,8 @@
 import React from 'react';
 import NoteForm from '../NoteForm/NoteForm';
+import NotesContainer from '../NotesContainer/NotesContainer';
+import Controls from '../../components/Controls/Controls'
+import {Route} from 'react-router-dom'
 
 function App() {
   return (
@@ -9,7 +12,7 @@ function App() {
           <i className="fas fa-edit"></i>
           Trapper Keeper
         </h1>
-        <NoteForm />
+        <Controls/>
       </header>
     </div>
   );

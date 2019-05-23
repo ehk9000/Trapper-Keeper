@@ -1,3 +1,8 @@
+export const addAllNotes = (notes) => ({
+  type: 'ADD_ALL_NOTES',
+  notes
+});
+
 export const addNote = (note) => ({
   type: 'ADD_NOTE',
   note
