@@ -1,5 +1,6 @@
 import React from 'react';
 import NoteForm from '../NoteForm/NoteForm';
+import NotesContainer from '../NotesContainer/NotesContainer';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
           Trapper Keeper
         </h1>
         <NoteForm />
+        <NotesContainer />
       </header>
     </div>
   );
