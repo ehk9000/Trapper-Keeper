@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import  PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from '../../actions'
+import * as actions from '../../actions';
+import { fetchAddNote } from '../../thunks/fetchAddNote';
 
 export class NoteForm extends Component {
   constructor() {
@@ -19,7 +20,6 @@ export class NoteForm extends Component {
     this.setState({
       [name]: value
     });
-
   }
 
   updateList = async () => {
@@ -29,7 +29,8 @@ export class NoteForm extends Component {
       list: [...this.state.list, { item: newItem, completed: false, id: Date.now() }],
       listItem: ''
     });
-    this.props.addNote({ title: this.state.title, list: this.state.list, id: Date.now() });
+
+    this.props.fetchAddNote({ title: this.state.title, list: this.state.list, id: Date.now() });
   }
 
   handleKeyPress = (e) => {
@@ -68,11 +69,9 @@ export const mapStateToProps = ({notes}) => ({
 })
 
 export const mapDispatchToProps = dispatch => ({
-  addNote: note => dispatch(actions.addNote(note)),
+  fetchAddNote: note => dispatch(fetchAddNote(note)),
   setNoteTitle: title => dispatch(actions.setNoteTitle(title))
 })
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
 
