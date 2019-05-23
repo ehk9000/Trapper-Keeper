@@ -3,6 +3,7 @@ import  PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { fetchAddNote } from '../../thunks/fetchAddNote';
+import ListItem from '../ListItem/ListItem';
 
 export class NoteForm extends Component {
   constructor() {
@@ -61,7 +62,7 @@ export class NoteForm extends Component {
     let displayListItems;
 
     if (this.state.list.length) {
-      displayListItems = this.state.list.map(listItem => itemInput)
+      displayListItems = this.state.list.map(listItem => <ListItem {...listItem} />)
     }
 
     return (
@@ -72,6 +73,7 @@ export class NoteForm extends Component {
           name="title"
           value={this.state.title}
           onChange={this.handleChange} />
+        {displayListItems}
         {itemInput}
         <button onClick={this.handleSave}><i className="fas fa-plus"></i></button>
       </section>
