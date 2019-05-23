@@ -10,13 +10,20 @@ export class NoteForm extends Component {
     this.state = {
       title: '',
       list: [],
-      listItem: ''
+      listItem: '',
+      id: null
+    }
+  }
+
+  componentDidMount() {
+    if(this.props.note) {
+      const {id, title, list} = this.props.note
+      this.setState({list, title, id})
     }
   }
 
   handleChange = (e) => {
     const { name, value } = e.target;
-    
     this.setState({
       [name]: value
     });
@@ -51,6 +58,11 @@ export class NoteForm extends Component {
         value={this.state.listItem}
         onChange={this.handleChange}
         onKeyPress={this.handleKeyPress} />
+    let displayListItems;
+
+    if (this.state.list.length) {
+      displayListItems = this.state.list.map(listItem => itemInput)
+    }
 
     return (
       <section className="noteForm">
