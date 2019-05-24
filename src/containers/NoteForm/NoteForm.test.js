@@ -26,7 +26,8 @@ describe('NoteForm', () => {
       title: '',
       list: [],
       listItem: '',
-      id: null
+      id: null,
+      submitted: false
     });
   });
 
