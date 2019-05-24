@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 
 class ListItem extends Component {
   render() {
-    console.log(this.props)
     return (
       <div className="ListItem">
-        <input type="text" value={this.props.item}/>
+        <input type="text" defaultValue={this.props.item}/>
       </div>
     );
   }

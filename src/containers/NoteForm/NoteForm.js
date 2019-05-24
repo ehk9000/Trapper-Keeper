@@ -31,9 +31,9 @@ export class NoteForm extends Component {
   }
 
   handleSave = async () => {
-    const { title, list, id } = this.state;
-
     await this.updateList();
+
+    const { title, list, id } = this.state;
 
     if (this.state.id) {
       this.props.updateNote({ title, list, id });
@@ -46,6 +46,7 @@ export class NoteForm extends Component {
 
   updateList = async () => {
     const newItem = this.state.listItem;
+
     await this.setState({
       list: [...this.state.list, { item: newItem, completed: false, id: Date.now() }],
       listItem: ''

@@ -4,15 +4,16 @@ import { shallow } from 'enzyme';
 import { NoteForm, mapDispatchToProps, mapStateToProps} from './NoteForm';
 import * as actions from '../../actions'
 
-const addNote = jest.fn();
-const setNoteTitle = jest.fn();
-
 describe('NoteForm', () => {
   let wrapper;
+  let mockUpdateNote = jest.fn();
+  let mockFetchAddNote = jest.fn();
 
   beforeEach(() => {
     wrapper = shallow(
-      <NoteForm />
+      <NoteForm 
+        updateNote={mockUpdateNote}
+        fetchAddNote={mockFetchAddNote} />
     );
   });
 
@@ -39,6 +40,24 @@ describe('NoteForm', () => {
     wrapper.instance().handleChange(mockEvent);
 
     expect(wrapper.state('title')).toEqual('this is a title');
+  });
+
+  it('should invoke updateNote if note already exists', async () => {
+    wrapper.setState({
+      id: 1111
+    });
+
+    await wrapper.instance().handleSave();
+
+    expect(mockUpdateNote).toHaveBeenCalled();
+  });
+
+  it('should invoke fetchAddNote if note is new', async () => {
+    expect(wrapper.state('id')).toEqual(null);
+
+    await wrapper.instance().handleSave();
+
+    expect(mockFetchAddNote).toHaveBeenCalled();
   });
 
   it('should update list with item input', () => {
