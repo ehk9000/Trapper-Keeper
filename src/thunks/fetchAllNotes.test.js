@@ -19,7 +19,7 @@ describe('fetchAllNotes', () => {
     ]
     url = 'http://localhost:3001/api/v1/notes';
     mockDispatch = jest.fn();
-    thunk = fetchAllNotes(url);
+    thunk = fetchAllNotes();
 
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({

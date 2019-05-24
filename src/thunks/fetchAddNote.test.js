@@ -20,9 +20,9 @@ describe('fetchAddNote', () => {
     options =  {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({})
+      body: JSON.stringify(mockNote)
     }
-    thunk = fetchAddNote(url);
+    thunk = fetchAddNote(mockNote);
     mockDispatch = jest.fn();
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
