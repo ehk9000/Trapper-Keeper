@@ -5,7 +5,7 @@ class ListItem extends Component {
   render() {
     return (
       <div className="ListItem">
-        <input type="text" defaultValue={this.props.item}/>
+        <input type="text" className="item-input" defaultValue={this.props.item}/>
       </div>
     );
   }

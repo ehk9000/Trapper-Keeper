@@ -1,6 +1,7 @@
-@import './normalize.scss';
-@import './variables.scss';
-@import '../containers/App/App.scss';
-@import '../containers/NoteForm/NoteForm.scss';
-@import '../containers/NotesContainer/NotesContainer.scss';
-@import '../components/Note/Note.scss';
+@import './normalize';
+@import './variables';
+@import '../containers/App/App';
+@import '../containers/NoteForm/NoteForm';
+@import '../containers/NotesContainer/NotesContainer';
+@import '../components/Note/Note';
+@import '../containers/ListItem/ListItem'

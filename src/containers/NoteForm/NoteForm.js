@@ -85,17 +85,20 @@ export class NoteForm extends Component {
     }
 
     return (
-      <section className="note-form">
-        <input 
-          type="text" 
-          placeholder="Title"
-          name="title"
-          value={this.state.title}
-          onChange={this.handleChange} />
-        {displayListItems}
-        {itemInput}
-        <button onClick={this.handleSave}><i className="fas fa-plus"></i></button>
-      </section>
+      <div className="note-form-bg">
+        <section className="note-form">
+          <input 
+            type="text" 
+            className="note-title"
+            placeholder="Title"
+            name="title"
+            value={this.state.title}
+            onChange={this.handleChange} />
+          {displayListItems}
+          {itemInput}
+          <button onClick={this.handleSave}><i className="fas fa-plus"></i></button>
+        </section>
+      </div>
     );
   }
 }
