@@ -105,7 +105,7 @@ export const mapStateToProps = ({notes}) => ({
 
 export const mapDispatchToProps = dispatch => ({
   fetchAddNote: note => dispatch(fetchAddNote(note)),
-  putNote: note => dispatch(putNote(note)),
+  fetchPutNote: note => dispatch(putNote(note)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
