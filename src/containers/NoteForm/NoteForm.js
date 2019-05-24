@@ -3,6 +3,7 @@ import  PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { fetchAddNote } from '../../thunks/fetchAddNote';
+import { putNote } from '../../thunks/putNote'
 import ListItem from '../ListItem/ListItem';
 
 export class NoteForm extends Component {
@@ -36,7 +37,7 @@ export class NoteForm extends Component {
     const { title, list, id } = this.state;
 
     if (this.state.id) {
-      this.props.updateNote({ title, list, id });
+      this.props.putNote({ title, list, id });
     } else {
       this.props.fetchAddNote({ title, list, id: Date.now() });
     }
@@ -75,7 +76,7 @@ export class NoteForm extends Component {
     }
 
     return (
-      <section className="noteForm">
+      <section className="note-form">
         <input 
           type="text" 
           placeholder="Title"
@@ -96,7 +97,7 @@ export const mapStateToProps = ({notes}) => ({
 
 export const mapDispatchToProps = dispatch => ({
   fetchAddNote: note => dispatch(fetchAddNote(note)),
-  updateNote: note => dispatch(actions.updateNote(note)),
+  putNote: note => dispatch(putNote(note)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);

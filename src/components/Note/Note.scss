@@ -1,0 +1,18 @@
+.note-card {
+  border-color: $drop;
+  border-radius: 5px;
+  border-width: 1 1 1 4px;
+  box-shadow: $drop;
+  display: flex;
+  display: inline;
+  flex-direction: column;
+  margin: 1%;
+  min-height: 30px;
+  padding-left: 4px;
+  text-decoration: none;
+  width: 20%;
+}
+
+.fa-plus {
+  color: $dkGrey
+}
