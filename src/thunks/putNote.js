@@ -24,13 +24,9 @@ export const putNote = (note) => {
     if (!response.ok) {
       throw Error(response.statusText)
     }
-    
+
     dispatch(setLoading(false))
-
-    const status = await response.json();
-    console.log('status',status)
-
-
+    
     } catch(error){
       dispatch(setError(error.message))
     }
