@@ -23,8 +23,9 @@ describe('NoteForm', () => {
   it('should have a default state', () => {
     expect(wrapper.state()).toEqual({
       title: '',
+      list: [],
       listItem: '',
-      list: []
+      id: null
     });
   });
 
@@ -40,18 +41,12 @@ describe('NoteForm', () => {
     expect(wrapper.state('title')).toEqual('this is a title');
   });
 
-  it.skip('should update list with item input', async () => {
-    expect(wrapper.state('listItem')).toEqual('')
+  it('should update list with item input', () => {
+    wrapper.setState({ listItem: 'milk' });
 
-    const mockEvent = { 
-      key: 'Enter', 
-      target: { value: 'this is a list item' }
-    }
-
-    wrapper.instance().handleKeyPress(mockEvent);
     wrapper.instance().updateList();
 
-    expect(wrapper.state('list.item')).toEqual('this is a list item')
+    expect(wrapper.state('list')[0].item).toEqual('milk');
   });
 
   describe('mapStateToProps', () => {
@@ -73,7 +68,7 @@ describe('NoteForm', () => {
     })
   })
   describe('mapDispatchToProps', () => {
-    it('should call a dispatch when using a function from MDTP', () => {
+    it.skip('should call a dispatch when using a function from MDTP', () => {
       const mockDispatch = jest.fn();
       const mockNotes = {
         notes: [{

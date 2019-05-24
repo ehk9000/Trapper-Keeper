@@ -70,7 +70,7 @@ export class NoteForm extends Component {
     let displayListItems;
 
     if (this.state.list.length) {
-      displayListItems = this.state.list.map(listItem => <ListItem {...listItem} />)
+      displayListItems = this.state.list.map(listItem => <ListItem {...listItem} key={listItem.id} />)
     }
 
     return (
