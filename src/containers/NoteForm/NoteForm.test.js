@@ -4,15 +4,16 @@ import { shallow } from 'enzyme';
 import { NoteForm, mapDispatchToProps, mapStateToProps} from './NoteForm';
 import * as actions from '../../actions'
 
-const addNote = jest.fn();
-const setNoteTitle = jest.fn();
-
 describe('NoteForm', () => {
   let wrapper;
+  let mockPutNote = jest.fn();
+  let mockFetchAddNote = jest.fn();
 
   beforeEach(() => {
     wrapper = shallow(
-      <NoteForm />
+      <NoteForm 
+        putNote={mockPutNote}
+        fetchAddNote={mockFetchAddNote} />
     );
   });
 
@@ -23,8 +24,9 @@ describe('NoteForm', () => {
   it('should have a default state', () => {
     expect(wrapper.state()).toEqual({
       title: '',
+      list: [],
       listItem: '',
-      list: []
+      id: null
     });
   });
 
@@ -40,18 +42,30 @@ describe('NoteForm', () => {
     expect(wrapper.state('title')).toEqual('this is a title');
   });
 
-  it.skip('should update list with item input', async () => {
-    expect(wrapper.state('listItem')).toEqual('')
+  it('should invoke putNote if note already exists', async () => {
+    wrapper.setState({
+      id: 1111
+    });
 
-    const mockEvent = { 
-      key: 'Enter', 
-      target: { value: 'this is a list item' }
-    }
+    await wrapper.instance().handleSave();
 
-    wrapper.instance().handleKeyPress(mockEvent);
+    expect(mockPutNote).toHaveBeenCalled();
+  });
+
+  it('should invoke fetchAddNote if note is new', async () => {
+    expect(wrapper.state('id')).toEqual(null);
+
+    await wrapper.instance().handleSave();
+
+    expect(mockFetchAddNote).toHaveBeenCalled();
+  });
+
+  it('should update list with item input', () => {
+    wrapper.setState({ listItem: 'milk' });
+
     wrapper.instance().updateList();
 
-    expect(wrapper.state('list.item')).toEqual('this is a list item')
+    expect(wrapper.state('list')[0].item).toEqual('milk');
   });
 
   describe('mapStateToProps', () => {
@@ -72,8 +86,9 @@ describe('NoteForm', () => {
       expect(mappedProps).toEqual(expected)
     })
   })
+  
   describe('mapDispatchToProps', () => {
-    it('should call a dispatch when using a function from MDTP', () => {
+    it.skip('should call a dispatch when using a function from MDTP', () => {
       const mockDispatch = jest.fn();
       const mockNotes = {
         notes: [{
@@ -109,6 +124,3 @@ describe('NoteForm', () => {
     })
   })
 });
-
-
-
