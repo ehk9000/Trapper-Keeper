@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import  PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
 import { fetchAddNote } from '../../thunks/fetchAddNote';
 import { putNote } from '../../thunks/putNote'
 import { Redirect } from 'react-router-dom';
@@ -21,8 +20,8 @@ export class NoteForm extends Component {
 
   componentDidMount() {
     if (this.props.note) {
-      const {id, title, list} = this.props.note
-      this.setState({list, title, id})
+      const {id, title, list} = this.props.note;
+      this.setState({list, title, id});
     }
   }
 
@@ -80,7 +79,9 @@ export class NoteForm extends Component {
     let displayListItems;
 
     if (this.state.list.length) {
-      displayListItems = this.state.list.map(listItem => <ListItem {...listItem} key={listItem.id} />)
+      displayListItems = this.state.list.map(listItem => 
+        <ListItem {...listItem} key={listItem.id} />
+      );
     }
 
     return (

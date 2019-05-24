@@ -9,7 +9,7 @@ import { rootReducer } from './reducers/index';
 import './styles/index.scss';
 import App from './containers/App/App';
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 const router = (
   <Provider store={store}>
@@ -17,6 +17,6 @@ const router = (
       <App />
     </BrowserRouter>
   </Provider>
-)
+);
 
 ReactDOM.render(router, document.getElementById('root'));

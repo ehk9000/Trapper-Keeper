@@ -6,15 +6,15 @@ export const notesReducer = (state = [], action) => {
       return action.notes;
     case 'UPDATE_NOTE':
       const newState = state.map(note => {
-        if (action.note.id == note.id) {
-          return action.note
+        if (action.note.id === note.id) {
+          return action.note;
         } else {
-          return note
+          return note;
         }
       });
 
       return newState;
     default: 
-    return state;
+      return state;
   }
 }
