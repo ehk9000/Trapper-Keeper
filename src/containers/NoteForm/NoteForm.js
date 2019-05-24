@@ -63,7 +63,6 @@ export class NoteForm extends Component {
   }
 
   render() {
-
     if (this.state.submitted) {
       return <Redirect path="/" />
     }
@@ -80,7 +79,9 @@ export class NoteForm extends Component {
 
     if (this.state.list.length) {
       displayListItems = this.state.list.map(listItem => 
-        <ListItem {...listItem} key={listItem.id} />
+        <ListItem 
+          {...listItem} 
+          key={listItem.id} />
       );
     }
 
