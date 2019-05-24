@@ -4,18 +4,20 @@ import { fetchAllNotes } from '../../thunks/fetchAllNotes';
 import { shallow } from 'enzyme';
 import NoteForm from '../NoteForm/NoteForm'
 
-const mockLocation = { pathname: '/new-note' }
-
-const mockNotes = [{title: 'newNote', list:[]}]
-
 jest.mock('../../thunks/fetchAllNotes')
 jest.mock('../NoteForm/NoteForm')
 
 describe('NotesContainer', () => {
-  const wrapper = shallow(<NotesContainer 
-                            fetchAllNotes={fetchAllNotes} 
-                            notes={mockNotes} 
-                            location={mockLocation}/>)
+  let wrapper;
+  beforeEach(() => {
+  let mockLocation = { pathname: '/new-note' }
+  wrapper = shallow(<NotesContainer 
+                      fetchAllNotes={fetchAllNotes} 
+                      notes={mockNotes} 
+                      location={mockLocation}/>)
+
+  })
+  const mockNotes = [{title: 'newNote', list:[{item:'groceries'},{item:'toothpaste'}]}]
 
   it('should match snapshot', () => {
    expect(wrapper).toMatchSnapshot();
@@ -32,6 +34,14 @@ describe('NotesContainer', () => {
   })
 
   describe('Render', () => {
+    let wrapper;
+    beforeEach(() => {
+      let mockLocation = { pathname: '/new-note' }
+      wrapper = shallow(<NotesContainer 
+                          fetchAllNotes={fetchAllNotes} 
+                          notes={mockNotes} 
+                          location={mockLocation}/>)
+    })
 
     it('should match snapshot if notes are present', () => {
       let notes = mockNotes 
@@ -49,7 +59,10 @@ describe('NotesContainer', () => {
   describe('mapStateToProps', () => {
 
     it('should map state to props', () => {
-
+      const mockState = {
+        notes: mockNotes
+      }
+    
     })
 
   })
