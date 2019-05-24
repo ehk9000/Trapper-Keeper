@@ -32,9 +32,9 @@ export class NoteForm extends Component {
   }
 
   handleSave = async () => {
-    const { title, list, id } = this.state;
-
     await this.updateList();
+
+    const { title, list, id } = this.state;
 
     if (this.state.id) {
       this.props.putNote({ title, list, id });
@@ -47,6 +47,7 @@ export class NoteForm extends Component {
 
   updateList = async () => {
     const newItem = this.state.listItem;
+
     await this.setState({
       list: [...this.state.list, { item: newItem, completed: false, id: Date.now() }],
       listItem: ''
@@ -71,7 +72,7 @@ export class NoteForm extends Component {
     let displayListItems;
 
     if (this.state.list.length) {
-      displayListItems = this.state.list.map(listItem => <ListItem {...listItem} />)
+      displayListItems = this.state.list.map(listItem => <ListItem {...listItem} key={listItem.id} />)
     }
 
     return (
@@ -104,6 +105,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
 NoteForm.propTypes = {
   title: PropTypes.string,
   listItem: PropTypes.string,
-  list: PropTypes.array
+  list: PropTypes.array,
+  id: PropTypes.number
 }
 
