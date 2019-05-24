@@ -24,9 +24,9 @@ export const fetchAddNote = (note) => {
       }
 
       const note = await response.json();
-
-      dispatch(addNote(note));
+      
       dispatch(setLoading(false));
+      dispatch(addNote(note));
     } catch (error) {
       dispatch(setError(error.message));
     }
