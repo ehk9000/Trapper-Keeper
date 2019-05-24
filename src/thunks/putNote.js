@@ -17,16 +17,16 @@ export const putNote = (note) => {
   
     try {
     dispatch(setLoading(true))
-    dispatch(updateNote(body));
-
+    
     const response = await fetch(url, options);
-
+    
     if (!response.ok) {
       throw Error(response.statusText)
     }
-
-    dispatch(setLoading(false))
     
+    dispatch(updateNote(body));
+    dispatch(setLoading(false))
+
     } catch(error){
       dispatch(setError(error.message))
     }
