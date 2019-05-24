@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { fetchAddNote } from '../../thunks/fetchAddNote';
 import { putNote } from '../../thunks/putNote'
+import { Redirect } from 'react-router-dom';
 import ListItem from '../ListItem/ListItem';
 
 export class NoteForm extends Component {
@@ -13,7 +14,8 @@ export class NoteForm extends Component {
       title: '',
       list: [],
       listItem: '',
-      id: null
+      id: null,
+      submitted: false
     }
   }
 
@@ -42,7 +44,8 @@ export class NoteForm extends Component {
       this.props.fetchAddNote({ title, list, id: Date.now() });
     }
 
-    this.setState({ list:[], title: '' });
+    this.setState({ list:[], title: '', submitted: true });
+
   }
 
   updateList = async () => {
@@ -61,6 +64,11 @@ export class NoteForm extends Component {
   }
 
   render() {
+
+    if (this.state.submitted) {
+      return <Redirect path="/" />
+    }
+
     const itemInput = 
       <input 
         type="text"
