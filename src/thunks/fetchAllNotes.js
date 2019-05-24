@@ -9,14 +9,14 @@ export const fetchAllNotes = () => {
 
       const response = await fetch(url);
 
-      if(!response.ok) {
+      if (!response.ok) {
         throw Error(response.statusText);
       }
 
       const notes = await response.json();
 
-      dispatch(addAllNotes(notes));
       dispatch(setLoading(false));
+      dispatch(addAllNotes(notes));
     } catch (error) {
       dispatch(setError(error.message));
     }
