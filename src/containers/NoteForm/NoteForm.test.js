@@ -6,13 +6,13 @@ import * as actions from '../../actions'
 
 describe('NoteForm', () => {
   let wrapper;
-  let mockPutNote = jest.fn();
+  let mockFetchPutNote = jest.fn();
   let mockFetchAddNote = jest.fn();
 
   beforeEach(() => {
     wrapper = shallow(
       <NoteForm 
-        putNote={mockPutNote}
+      fetchPutNote={mockFetchPutNote}
         fetchAddNote={mockFetchAddNote} />
     );
   });
@@ -26,7 +26,8 @@ describe('NoteForm', () => {
       title: '',
       list: [],
       listItem: '',
-      id: null
+      id: null,
+      submitted: false
     });
   });
 
@@ -49,7 +50,7 @@ describe('NoteForm', () => {
 
     await wrapper.instance().handleSave();
 
-    expect(mockPutNote).toHaveBeenCalled();
+    expect(mockFetchPutNote).toHaveBeenCalled();
   });
 
   it('should invoke fetchAddNote if note is new', async () => {
