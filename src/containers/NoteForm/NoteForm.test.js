@@ -6,13 +6,13 @@ import * as actions from '../../actions'
 
 describe('NoteForm', () => {
   let wrapper;
-  let mockUpdateNote = jest.fn();
+  let mockPutNote = jest.fn();
   let mockFetchAddNote = jest.fn();
 
   beforeEach(() => {
     wrapper = shallow(
       <NoteForm 
-        updateNote={mockUpdateNote}
+        putNote={mockPutNote}
         fetchAddNote={mockFetchAddNote} />
     );
   });
@@ -42,14 +42,14 @@ describe('NoteForm', () => {
     expect(wrapper.state('title')).toEqual('this is a title');
   });
 
-  it('should invoke updateNote if note already exists', async () => {
+  it('should invoke putNote if note already exists', async () => {
     wrapper.setState({
       id: 1111
     });
 
     await wrapper.instance().handleSave();
 
-    expect(mockUpdateNote).toHaveBeenCalled();
+    expect(mockPutNote).toHaveBeenCalled();
   });
 
   it('should invoke fetchAddNote if note is new', async () => {
@@ -86,6 +86,7 @@ describe('NoteForm', () => {
       expect(mappedProps).toEqual(expected)
     })
   })
+  
   describe('mapDispatchToProps', () => {
     it.skip('should call a dispatch when using a function from MDTP', () => {
       const mockDispatch = jest.fn();
