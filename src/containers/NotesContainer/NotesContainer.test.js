@@ -1,14 +1,24 @@
 import React from 'react'
-import NotesContainer from './NotesContainer'
+import {NotesContainer, mapStateToProps, mapDispatchToProps} from './NotesContainer'
 import { fetchAllNotes } from '../../thunks/fetchAllNotes';
-import { shallow } from 'enzyme'
+import { shallow } from 'enzyme';
+import NoteForm from '../NoteForm/NoteForm'
+
+const mockLocation = { pathname: '/new-note' }
+
+const mockNotes = [{title: 'newNote', list:[]}]
 
 jest.mock('../../thunks/fetchAllNotes')
+jest.mock('../NoteForm/NoteForm')
 
 describe('NotesContainer', () => {
+  const wrapper = shallow(<NotesContainer 
+                            fetchAllNotes={fetchAllNotes} 
+                            notes={mockNotes} 
+                            location={mockLocation}/>)
 
   it('should match snapshot', () => {
-   expect(NotesContainer).toMatchSnapshot();
+   expect(wrapper).toMatchSnapshot();
   })
 
   describe('componentDidMount', () => {
@@ -23,11 +33,14 @@ describe('NotesContainer', () => {
 
   describe('Render', () => {
 
-    it('should return displayNotes', () => {
-
+    it('should match snapshot if notes are present', () => {
+      let notes = mockNotes 
+      expect(NotesContainer).toMatchSnapshot()
     })
 
-    it('should return notePopup', () => {
+    it('should match snapshot if no notes are present', () => {
+     let notes = []
+     expect(NotesContainer).toMatchSnapshot()
 
     })
 

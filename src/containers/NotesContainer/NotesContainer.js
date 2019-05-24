@@ -4,7 +4,7 @@ import { fetchAllNotes } from '../../thunks/fetchAllNotes';
 import Note from '../../components/Note/Note';
 import NoteForm from '../NoteForm/NoteForm'
 
-class NotesContainer extends Component {
+export class NotesContainer extends Component {
 
   componentDidMount() {
     this.props.fetchAllNotes();

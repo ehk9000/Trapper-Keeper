@@ -1,11 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NotesContainer should match snapshot 1`] = `
-Object {
-  "$$typeof": Symbol(react.memo),
-  "WrappedComponent": [Function],
-  "compare": null,
-  "displayName": "Connect(NotesContainer)",
-  "type": [Function],
-}
-`;
+exports[`NotesContainer Render should match snapshot if no notes are present 1`] = `[Function]`;
+
+exports[`NotesContainer Render should match snapshot if notes are present 1`] = `[Function]`;
+
+exports[`NotesContainer should match snapshot 1`] = `ShallowWrapper {}`;
