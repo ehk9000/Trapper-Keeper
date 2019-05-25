@@ -63,6 +63,10 @@ export class NoteForm extends Component {
     }
   }
 
+  handleDelete = (id) => {
+
+  }
+
   render() {
 
     if (this.state.submitted) {
@@ -94,6 +98,7 @@ export class NoteForm extends Component {
         {displayListItems}
         {itemInput}
         <button onClick={this.handleSave}><i className="fas fa-plus"></i></button>
+        <i className="far fa-trash-alt" onClick={this.handleDelete} ></i>
       </section>
     );
   }
@@ -106,6 +111,7 @@ export const mapStateToProps = ({notes}) => ({
 export const mapDispatchToProps = dispatch => ({
   fetchAddNote: note => dispatch(fetchAddNote(note)),
   fetchPutNote: note => dispatch(fetchPutNote(note)),
+  deleteNote: id => dispatch(actions.deleteNote(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
