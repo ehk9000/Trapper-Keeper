@@ -22,3 +22,8 @@ export const setError = (error) => ({
   type: 'SET_ERROR',
   error
 });
+
+export const deleteNote = (id) => ({
+  type: 'DELETE_NOTE',
+  id
+});

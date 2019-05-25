@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { fetchAddNote } from '../../thunks/fetchAddNote';
 import { fetchPutNote } from '../../thunks/fetchPutNote';
+import { fetchDeleteNote } from '../../thunks/fetchDeleteNote'
 import { Redirect } from 'react-router-dom';
 import ListItem from '../ListItem/ListItem';
 
@@ -63,6 +64,12 @@ export class NoteForm extends Component {
     }
   }
 
+  handleDelete = () => {
+   const {id} = this.state;
+   console.log('fire')
+   this.props.fetchDeleteNote(id)
+  }
+
   render() {
 
     if (this.state.submitted) {
@@ -93,18 +100,19 @@ export class NoteForm extends Component {
           onChange={this.handleChange} />
         {displayListItems}
         {itemInput}
+        <i className="far fa-trash-alt" onClick={this.handleDelete} ></i>
         <button onClick={this.handleSave}><i className="fas fa-plus"></i></button>
       </section>
     );
   }
 }
-
 export const mapStateToProps = ({notes}) => ({
   notes
 });
 
 export const mapDispatchToProps = dispatch => ({
   fetchAddNote: note => dispatch(fetchAddNote(note)),
+  fetchDeleteNote: id => dispatch(fetchDeleteNote(id)),
   fetchPutNote: note => dispatch(fetchPutNote(note))
 });
 
