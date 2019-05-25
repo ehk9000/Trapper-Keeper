@@ -1,5 +1,6 @@
 
 .notes-container {
   display: grid;
+  grid-auto-flow: dense;
   grid-auto-columns: repeat(5 1fr);
 }

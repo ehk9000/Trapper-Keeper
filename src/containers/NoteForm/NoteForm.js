@@ -3,7 +3,7 @@ import  PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { fetchAddNote } from '../../thunks/fetchAddNote';
-import { fetchPutNote } from '../../thunks/fetchPutNote'
+import { fetchPutNote } from '../../thunks/fetchPutNote';
 import { Redirect } from 'react-router-dom';
 import ListItem from '../ListItem/ListItem';
 
@@ -105,7 +105,7 @@ export const mapStateToProps = ({notes}) => ({
 
 export const mapDispatchToProps = dispatch => ({
   fetchAddNote: note => dispatch(fetchAddNote(note)),
-  fetchPutNote: note => dispatch(fetchPutNote(note)),
+  fetchPutNote: note => dispatch(fetchPutNote(note))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
