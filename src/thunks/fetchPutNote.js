@@ -1,6 +1,6 @@
 import { setError, updateNote, setLoading } from '../actions'
 
-export const putNote = (note) => {
+export const fetchPutNote = (note) => {
   return async (dispatch) => {
     const id = note.id
     const body = {
