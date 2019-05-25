@@ -1,7 +1,7 @@
 export const addAllNotes = (notes) => ({
   type: 'ADD_ALL_NOTES',
   notes
-});deleteNote
+});
 
 export const addNote = (note) => ({
   type: 'ADD_NOTE',
@@ -23,7 +23,7 @@ export const setError = (error) => ({
   error
 });
 
-export const  = (id) => ({
+export const deleteNote = (id) => ({
   type: 'DELETE_NOTE',
   id
-})
+});

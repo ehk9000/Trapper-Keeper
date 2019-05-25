@@ -4,9 +4,9 @@ export const fetchDeleteNote = (id) => {
   return async (dispatch) => {
     const options = {
       method: 'DELETE',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify(id)
+      headers: { 'Content-type': 'application/json' }
     }
+
     const url = `http://localhost:3001/api/v1/notes/${id}`
   
   try {
