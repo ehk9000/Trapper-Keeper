@@ -27,7 +27,7 @@ export const fetchPutNote = (note) => {
     dispatch(updateNote(body));
     dispatch(setLoading(false))
 
-    } catch(error){
+    } catch(error) {
       dispatch(setError(error.message))
     }
   }
