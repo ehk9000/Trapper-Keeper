@@ -33,10 +33,22 @@ export class NoteForm extends Component {
     });
   }
 
-  handleSave = async () => {
-    await this.updateList();
+  updateListItem = (newItem, completed, id) => {
+    const { list } = this.state;
+    const newList = list.map(item => {
+      if (item.id === id) return { item: newItem, completed, id };
+      else return item;
+    });
 
+    this.setState({
+      list: newList
+    });
+  }
+
+  handleSave = async () => {
     const { title, list, id } = this.state;
+    
+    await this.updateList();
 
     if (this.state.id) {
       this.props.fetchPutNote({ title, list, id });
@@ -88,6 +100,7 @@ export class NoteForm extends Component {
       displayListItems = this.state.list.map(listItem => 
         <ListItem 
           {...listItem} 
+          updateListItem={this.updateListItem}
           key={listItem.id} />
       );
     }

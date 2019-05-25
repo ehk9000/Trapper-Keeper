@@ -5,7 +5,6 @@ import Note from '../../components/Note/Note';
 import NoteForm from '../NoteForm/NoteForm';
 
 export class NotesContainer extends Component {
-
   componentDidMount() {
     this.props.fetchAllNotes();
   }
