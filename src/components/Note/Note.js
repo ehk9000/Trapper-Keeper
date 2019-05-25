@@ -4,16 +4,17 @@ import {Link} from 'react-router-dom'
 const Note = (props) => {
   let {title, list, id} = props;
   let listItems = list.map(item => {
-    return <p>{item.item}</p>
-  })
-  return(
+    return <p key={item.id}>{item.item}</p>
+  });
+
+  return (
     <Link to={`/notes/${id}`} className='note-card'> 
       <article>
         <h1>{title}</h1>
         {listItems}
       </article>
     </Link>
-  )
+  );
 }
 
-export default Note
+export default Note;
