@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import  PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAddNote } from '../../thunks/fetchAddNote';
-import { putNote } from '../../thunks/putNote'
+import { fetchPutNote } from '../../thunks/fetchPutNote';
 import { Redirect } from 'react-router-dom';
 import ListItem from '../ListItem/ListItem';
 
@@ -38,7 +38,7 @@ export class NoteForm extends Component {
     const { title, list, id } = this.state;
 
     if (this.state.id) {
-      this.props.putNote({ title, list, id });
+      this.props.fetchPutNote({ title, list, id });
     } else {
       this.props.fetchAddNote({ title, list, id: Date.now() });
     }
@@ -110,7 +110,7 @@ export const mapStateToProps = ({notes}) => ({
 
 export const mapDispatchToProps = dispatch => ({
   fetchAddNote: note => dispatch(fetchAddNote(note)),
-  putNote: note => dispatch(putNote(note)),
+  fetchPutNote: note => dispatch(fetchPutNote(note))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
