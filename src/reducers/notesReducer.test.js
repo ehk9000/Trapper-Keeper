@@ -44,7 +44,7 @@
         const expected = updateNotes;
         const result = notesReducer(notes, action); 
 
-        expect(result).toEqual(expected)
+        expect(result).toEqual(expected);
 
       });
 
@@ -54,11 +54,21 @@
         const expected = notes;
         const result = notesReducer(notes, action); 
 
-        expect(result).toEqual(expected)
+        expect(result).toEqual(expected);
 
       });
 
+    });
 
+    describe('DELETE_NOTE', () => {
+
+      it('should delete a note', () => {
+        const action = actions.deleteNote(2);
+        const expected = [note]
+        const result = notesReducer(notes, action)
+
+        expect(result).toEqual(expected)
+      });
 
     });
 
