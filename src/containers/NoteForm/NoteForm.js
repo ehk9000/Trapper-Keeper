@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import  PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
 import { fetchAddNote } from '../../thunks/fetchAddNote';
 import { fetchPutNote } from '../../thunks/fetchPutNote';
 import { fetchDeleteNote } from '../../thunks/fetchDeleteNote'
@@ -22,8 +21,8 @@ export class NoteForm extends Component {
 
   componentDidMount() {
     if (this.props.note) {
-      const {id, title, list} = this.props.note
-      this.setState({list, title, id})
+      const {id, title, list} = this.props.note;
+      this.setState({list, title, id});
     }
   }
 
@@ -71,7 +70,6 @@ export class NoteForm extends Component {
   }
 
   render() {
-
     if (this.state.submitted) {
       return <Redirect path="/" />
     }
@@ -87,25 +85,33 @@ export class NoteForm extends Component {
     let displayListItems;
 
     if (this.state.list.length) {
-      displayListItems = this.state.list.map(listItem => <ListItem {...listItem} key={listItem.id} />)
+      displayListItems = this.state.list.map(listItem => 
+        <ListItem 
+          {...listItem} 
+          key={listItem.id} />
+      );
     }
 
     return (
-      <section className="note-form">
-        <input 
-          type="text" 
-          placeholder="Title"
-          name="title"
-          value={this.state.title}
-          onChange={this.handleChange} />
-        {displayListItems}
-        {itemInput}
-        <i className="far fa-trash-alt" onClick={this.handleDelete} ></i>
-        <button onClick={this.handleSave}><i className="fas fa-plus"></i></button>
-      </section>
+      <div className="note-form-bg">
+        <section className="note-form">
+          <input 
+            type="text" 
+            className="note-title"
+            placeholder="Title"
+            name="title"
+            value={this.state.title}
+            onChange={this.handleChange} />
+          {displayListItems}
+          {itemInput}
+          <i className="far fa-trash-alt" onClick={this.handleDelete} ></i>
+          <button onClick={this.handleSave}><i className="fas fa-plus"></i></button>
+        </section>
+      </div>
     );
   }
 }
+
 export const mapStateToProps = ({notes}) => ({
   notes
 });
@@ -124,4 +130,3 @@ NoteForm.propTypes = {
   list: PropTypes.array,
   id: PropTypes.number
 }
-

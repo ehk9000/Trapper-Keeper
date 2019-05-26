@@ -3,6 +3,6 @@ export const isLoadingReducer = (state = false, action) => {
     case 'SET_LOADING':
       return action.isLoading;
     default: 
-      return state
+      return state;
   }
 }

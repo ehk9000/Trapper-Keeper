@@ -8,10 +8,10 @@ export const notesReducer = (state = [], action) => {
       
     case 'UPDATE_NOTE':
       const newState = state.map(note => {
-        if (action.note.id == note.id) {
-          return action.note
+        if (action.note.id === note.id) {
+          return action.note;
         } else {
-          return note
+          return note;
         }
       });
 
@@ -22,6 +22,6 @@ export const notesReducer = (state = [], action) => {
         return filteredState;
 
     default: 
-    return state;
+      return state;
   }
 }

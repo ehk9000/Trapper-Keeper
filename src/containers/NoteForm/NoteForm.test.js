@@ -17,11 +17,11 @@ describe('NoteForm', () => {
     );
   });
 
-  it.skip('should render correctly', () => {
+  it('should render correctly', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it.skip('should have a default state', () => {
+  it('should have a default state', () => {
     expect(wrapper.state()).toEqual({
       title: '',
       list: [],
@@ -31,7 +31,7 @@ describe('NoteForm', () => {
     });
   });
 
-  it.skip('should update title or list item with keypress', () => {
+  it('should update title or list item with keypress', () => {
     expect(wrapper.state('title')).toEqual('');
 
     const mockEvent = {
@@ -43,7 +43,7 @@ describe('NoteForm', () => {
     expect(wrapper.state('title')).toEqual('this is a title');
   });
 
-  it.skip('should invoke putNote if note already exists', async () => {
+  it('should invoke putNote if note already exists', async () => {
     wrapper.setState({
       id: 1111
     });
@@ -53,7 +53,7 @@ describe('NoteForm', () => {
     expect(mockFetchPutNote).toHaveBeenCalled();
   });
 
-  it.skip('should invoke fetchAddNote if note is new', async () => {
+  it('should invoke fetchAddNote if note is new', async () => {
     expect(wrapper.state('id')).toEqual(null);
 
     await wrapper.instance().handleSave();
@@ -61,7 +61,7 @@ describe('NoteForm', () => {
     expect(mockFetchAddNote).toHaveBeenCalled();
   });
 
-  it.skip('should update list with item input', () => {
+  it('should update list with item input', () => {
     wrapper.setState({ listItem: 'milk' });
 
     wrapper.instance().updateList();
@@ -70,7 +70,7 @@ describe('NoteForm', () => {
   });
 
   describe('mapStateToProps', () => {
-    it.skip('should return a props object with the notes array', () => {
+    it('should return a props object with the notes array', () => {
       const mockNotes = {
         notes: [{
           title: 'groceries',
@@ -88,8 +88,8 @@ describe('NoteForm', () => {
     })
   })
   
-  describe('mapDispatchToProps', () => {
-    it.skip('should call a dispatch when using a function from MDTP', () => {
+  describe.skip('mapDispatchToProps', () => {
+    it('should call a dispatch when using a function from MDTP', () => {
       const mockDispatch = jest.fn();
       const mockNotes = {
         notes: [{
@@ -107,7 +107,7 @@ describe('NoteForm', () => {
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
 
-    it.skip('should call a dispatch when using a function from MDTP', () => {
+    it('should call a dispatch when using a function from MDTP', () => {
 
       const mockNotes = {
         notes: [{

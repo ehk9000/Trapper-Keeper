@@ -79,17 +79,15 @@ describe("NotesContainer", () => {
   });
 
   describe("mapDispatchToProps", () => {
-    it("should map dispatch to props", () => {});
+    it("should map dispatch to props", () => {
+      const mockDispatch = jest.fn();
 
-    const mockDispatch = jest.fn();
+      fetchAllNotes.mockImplementation(() => {});
 
-    fetchAllNotes.mockImplementation(() => {});
-
-    const dispatchReturned = mapDispatchToProps(mockDispatch);
-    const expected = {fetchAllNotes: (expect.any(Function))
-}
-  
-    expect(dispatchReturned).toEqual(expected);
-
+      const dispatchReturned = mapDispatchToProps(mockDispatch);
+      const expected = { fetchAllNotes: (expect.any(Function)) }
+      
+      expect(dispatchReturned).toEqual(expected);
+    });
   });
 });
