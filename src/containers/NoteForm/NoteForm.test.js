@@ -43,6 +43,7 @@ describe('NoteForm', () => {
     expect(wrapper.state('title')).toEqual('this is a title');
   });
 
+
   it('should invoke putNote if note already exists', async () => {
     wrapper.setState({
       id: 1111
@@ -69,10 +70,25 @@ describe('NoteForm', () => {
     expect(wrapper.state('list')[0].item).toEqual('milk');
   });
 
+  it('should delete an item', () => {
+    const list = [{ listItem: 'milk', completed: false, id:1 },
+                  { listItem: 'water', completed: true, id:2 }];
+
+    wrapper.setState({ list });
+
+    wrapper.instance().deleteListItem(1);
+    console.log(wrapper.instance().deleteListItem(1))
+    
+    const expected = [{ listItem: 'water', completed: true, id:2 }];
+
+    expect(wrapper.state('list')).toEqual(expected);
+
+  });
+
   describe('mapStateToProps', () => {
     it('should return a props object with the notes array', () => {
       const mockNotes = {
-        notes: [{
+          notes: [{
           title: 'groceries',
           list:[{item: 'milk', id: 122523453}, {item: 'eggs', id:12312321}]
           }]
@@ -88,8 +104,8 @@ describe('NoteForm', () => {
     })
   })
   
-  describe.skip('mapDispatchToProps', () => {
-    it('should call a dispatch when using a function from MDTP', () => {
+  describe('mapDispatchToProps', () => {
+    it.skip('should call a dispatch when using a function from MDTP', () => {
       const mockDispatch = jest.fn();
       const mockNotes = {
         notes: [{
@@ -107,7 +123,7 @@ describe('NoteForm', () => {
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
 
-    it('should call a dispatch when using a function from MDTP', () => {
+    it.skip('should call a dispatch when using a function from MDTP', () => {
 
       const mockNotes = {
         notes: [{
