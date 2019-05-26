@@ -20,6 +20,7 @@ describe('fetchPutNote', () => {
       const id = mockNote.id;
       
       url = `http://localhost:3001/api/v1/notes/${id}`;
+      
       options = {
         method: 'PUT',
         headers: { 'Content-type': 'application/json' },
