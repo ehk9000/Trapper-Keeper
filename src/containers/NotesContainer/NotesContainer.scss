@@ -1,6 +1,6 @@
-
 .notes-container {
   display: grid;
-  grid-auto-flow: dense;
-  grid-auto-columns: repeat(5 1fr);
+  grid-gap: 25px;
+  grid-template-columns: repeat(auto-fit, 250px);
+  padding: 40px;
 }
