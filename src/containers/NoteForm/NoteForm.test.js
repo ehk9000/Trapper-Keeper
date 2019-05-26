@@ -88,8 +88,8 @@ describe('NoteForm', () => {
     })
   })
   
-  describe('mapDispatchToProps', () => {
-    it.skip('should call a dispatch when using a function from MDTP', () => {
+  describe.skip('mapDispatchToProps', () => {
+    it('should call a dispatch when using a function from MDTP', () => {
       const mockDispatch = jest.fn();
       const mockNotes = {
         notes: [{
@@ -107,8 +107,7 @@ describe('NoteForm', () => {
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
 
-    it.skip('should call a dispatch when using a function from MDTP', () => {
-      const mockDispatch = jest.fn();
+    it('should call a dispatch when using a function from MDTP', () => {
 
       const mockNotes = {
         notes: [{
@@ -117,6 +116,7 @@ describe('NoteForm', () => {
           }]
         }
       const actionToDispatch = actions.setNoteTitle(mockNotes)
+      const mockDispatch = jest.fn(() => actionToDispatch);
 
       const mappedProps = mapDispatchToProps(mockDispatch)
       mappedProps.addNote(mockNotes)

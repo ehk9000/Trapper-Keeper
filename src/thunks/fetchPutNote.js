@@ -1,8 +1,8 @@
-import { setError, updateNote, setLoading } from '../actions'
+import { setError, updateNote, setLoading } from '../actions';
 
 export const fetchPutNote = (note) => {
   return async (dispatch) => {
-    const id = note.id
+    const id = note.id;
     const body = {
       title: note.title,
       list: note.list,
@@ -13,22 +13,21 @@ export const fetchPutNote = (note) => {
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify(body)
     }
-    const url = `http://localhost:3001/api/v1/notes/${id}`
+    const url = `http://localhost:3001/api/v1/notes/${id}`;
   
     try {
-    dispatch(setLoading(true))
-    
-    const response = await fetch(url, options);
-    
-    if (!response.ok) {
-      throw Error(response.statusText)
-    }
-    
-    dispatch(updateNote(body));
-    dispatch(setLoading(false))
-
-    } catch(error){
-      dispatch(setError(error.message))
+      dispatch(setLoading(true));
+      
+      const response = await fetch(url, options);
+      
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      
+      dispatch(setLoading(false));
+      dispatch(updateNote(body));
+    } catch(error) {
+      dispatch(setError(error.message));
     }
   }
 }

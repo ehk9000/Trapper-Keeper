@@ -1,8 +1,5 @@
 import React from 'react';
-import NoteForm from '../NoteForm/NoteForm';
-import NotesContainer from '../NotesContainer/NotesContainer';
-import Controls from '../../components/Controls/Controls'
-import {Route} from 'react-router-dom'
+import Controls from '../../components/Controls/Controls';
 
 function App() {
   return (
