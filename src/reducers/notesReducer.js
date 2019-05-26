@@ -14,12 +14,15 @@ export const notesReducer = (state = [], action) => {
           return note;
         }
       });
+      
+      return newState;
 
     case 'DELETE_NOTE':
-        const filteredState = state.filter(note => {
-          return note.id !== action.id
-        })
-        return filteredState;
+      const filteredState = state.filter(note => {
+        return note.id !== action.id
+        });
+
+      return filteredState;
 
     default: 
       return state;
