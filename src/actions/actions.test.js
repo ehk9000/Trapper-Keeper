@@ -1,7 +1,7 @@
 import * as actions from './index'
 
 describe('actions', () => {
-  it('should return a type of ADD_ALL_NOTES with a notes array', () => {
+  it('should return a type of addAllNotes with a notes array', () => {
     const notes = [
       {
       title: 'Groceries',
@@ -88,5 +88,17 @@ describe('actions', () => {
 
     expect(result).toEqual(expected);
   });
-  
+
+  it('should return a type of deleteNote with an id', () => {
+    const id = 3;
+
+    const expected = {
+      type: 'DELETE_NOTE',
+      id
+    };
+
+    const result = actions.deleteNote(id);
+
+    expect(result).toEqual(expected);
+  });
 });
