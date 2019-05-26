@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchAddNote } from '../../thunks/fetchAddNote';
 import { fetchPutNote } from '../../thunks/fetchPutNote';
 import { fetchDeleteNote } from '../../thunks/fetchDeleteNote'
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ListItem from '../ListItem/ListItem';
 
 export class NoteForm extends Component {
@@ -14,8 +14,7 @@ export class NoteForm extends Component {
       title: '',
       list: [],
       listItem: '',
-      id: null,
-      submitted: false
+      id: null
     }
   }
 
@@ -90,10 +89,6 @@ export class NoteForm extends Component {
   }
 
   render() {
-    if (this.state.submitted) {
-      return <Redirect path="/" />
-    }
-
     const itemInput = 
       <input 
         type="text"
@@ -126,8 +121,10 @@ export class NoteForm extends Component {
             onChange={this.handleChange} />
           {displayListItems}
           {itemInput}
-          <i className="far fa-trash-alt" onClick={this.handleDelete} ></i>
-          <button onClick={this.handleSave}>Save</button>
+          <Link to="/">
+            <i className="far fa-trash-alt" onClick={this.handleDelete} ></i>
+            <button onClick={this.handleSave}>Save</button>
+          </Link>
         </section>
       </div>
     );
