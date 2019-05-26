@@ -19,6 +19,12 @@ class ListItem extends Component {
     updateListItem(listItem, completed, id);
   }
 
+  handleDelete = () => {
+    const { deleteListItem, id } = this.props;
+
+    deleteListItem(id);
+  }
+
   render() {
     return (
       <div className="ListItem" onBlur={this.handleBlur}>
@@ -29,7 +35,9 @@ class ListItem extends Component {
           contentEditable="true"
           onChange={this.handleChange}
           value={this.state.listItem} />
-        <button className="delete-item-btn">
+        <button 
+          className="delete-item-btn"
+          onClick={this.handleDelete}>
           <span className="delete-x">X</span>
         </button>
       </div>
