@@ -1,3 +1,19 @@
-.item-input {
-  width: 100%;
+.delete-item-btn {
+  .delete-x {
+    color: transparent;
+  }
+}
+
+.delete-item-btn:hover {
+  .delete-x {
+    color: #333;
+  }
+}
+
+#item-check:hover + .delete-item-btn,
+.item-input:hover + .delete-item-btn,
+.item-input:focus + .delete-item-btn {
+  .delete-x {
+    color: #999;
+  }
 }
