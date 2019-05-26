@@ -37,18 +37,22 @@
 
     describe('UPDATE_NOTE', () => {
 
-      it('should return the original matching note not found', => {
-        let updateNote = { title: 'note', listItem: 'get almonds', id: 4 }
-        action = actions.updateNote(updateNote)
-        const expected = note
-      });
-
-      it.skip('should update note on state tree', () => {
+      it('should update notes array on state tree', () => {
         let updateNote = { title: 'note', listItem: 'get almonds', id: 1 };
         const action = actions.updateNote(updateNote);
         const updateNotes = [updateNote, { title: 'newNote', listItem: 'get salt', id: 2 }];
         const expected = updateNotes;
-        const result = notesReducer([], action); 
+        const result = notesReducer(notes, action); 
+
+        expect(result).toEqual(expected)
+
+      });
+
+       it('should  not update notes array on state tree when no id matches', () => {
+        let updateNote = { title: 'note', listItem: 'get almonds', id: 12 };
+        const action = actions.updateNote(updateNote);
+        const expected = notes;
+        const result = notesReducer(notes, action); 
 
         expect(result).toEqual(expected)
 
