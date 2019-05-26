@@ -19,16 +19,27 @@ class ListItem extends Component {
     updateListItem(listItem, completed, id);
   }
 
+  handleDelete = () => {
+    const { deleteListItem, id } = this.props;
+
+    deleteListItem(id);
+  }
+
   render() {
     return (
       <div className="ListItem" onBlur={this.handleBlur}>
-        <input type="checkbox" id="item-input" />
+        <input type="checkbox" id="item-check" />
         <input 
           type="text" 
-          className="item-label" 
+          className="item-input" 
           contentEditable="true"
           onChange={this.handleChange}
           value={this.state.listItem} />
+        <button 
+          className="delete-item-btn"
+          onClick={this.handleDelete}>
+          <span className="delete-x">X</span>
+        </button>
       </div>
     );
   }

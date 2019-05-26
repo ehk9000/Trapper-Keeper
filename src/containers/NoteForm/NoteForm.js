@@ -45,9 +45,18 @@ export class NoteForm extends Component {
     });
   }
 
+  deleteListItem = (id) => {
+    const { list } = this.state;
+    const newList = list.filter(item => item.id !== id);
+
+    this.setState({
+      list: newList
+    });
+  }
+
   handleSave = async () => {
     const { title, list, id } = this.state;
-    
+
     await this.updateList();
 
     if (this.state.id) {
@@ -57,7 +66,6 @@ export class NoteForm extends Component {
     }
 
     this.setState({ list:[], title: '', submitted: true });
-
   }
 
   updateList = async () => {
@@ -77,8 +85,8 @@ export class NoteForm extends Component {
 
   handleDelete = () => {
    const {id} = this.state;
-   console.log('fire')
-   this.props.fetchDeleteNote(id)
+
+   this.props.fetchDeleteNote(id);
   }
 
   render() {
@@ -101,6 +109,7 @@ export class NoteForm extends Component {
         <ListItem 
           {...listItem} 
           updateListItem={this.updateListItem}
+          deleteListItem={this.deleteListItem}
           key={listItem.id} />
       );
     }
@@ -118,7 +127,7 @@ export class NoteForm extends Component {
           {displayListItems}
           {itemInput}
           <i className="far fa-trash-alt" onClick={this.handleDelete} ></i>
-          <button onClick={this.handleSave}><i className="fas fa-plus"></i></button>
+          <button onClick={this.handleSave}>Save</button>
         </section>
       </div>
     );
@@ -141,5 +150,6 @@ NoteForm.propTypes = {
   title: PropTypes.string,
   listItem: PropTypes.string,
   list: PropTypes.array,
-  id: PropTypes.number
+  id: PropTypes.number,
+  submitted: PropTypes.bool
 }

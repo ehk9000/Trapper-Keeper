@@ -44,10 +44,12 @@ export class NotesContainer extends Component {
     }
 
     return (
-      <section className="notes-container">
-        {displayNotes}
+      <div className="main-container">
+        <section className="notes-container">
+          {displayNotes}
+        </section>
         {notePopup}
-      </section>
+      </div>
     );
   }
 }
