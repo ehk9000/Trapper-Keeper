@@ -127,7 +127,7 @@ export class NoteForm extends Component {
           {displayListItems}
           {itemInput}
           <i className="far fa-trash-alt" onClick={this.handleDelete} ></i>
-          <button onClick={this.handleSave}><i className="fas fa-plus"></i></button>
+          <button onClick={this.handleSave}>Save</button>
         </section>
       </div>
     );
@@ -150,5 +150,6 @@ NoteForm.propTypes = {
   title: PropTypes.string,
   listItem: PropTypes.string,
   list: PropTypes.array,
-  id: PropTypes.number
+  id: PropTypes.number,
+  submitted: PropTypes.bool
 }
