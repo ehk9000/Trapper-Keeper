@@ -1,8 +1,6 @@
 .note-card {
-  border-color: $drop;
+  border: $black 1px solid;
   border-radius: 5px;
-  border-width: 1 1 1 4px;
-  box-shadow: $drop;
   display: flex;
   display: inline;
   flex-direction: column;
