@@ -157,20 +157,17 @@ describe('NoteForm', () => {
       <NoteForm 
       fetchPutNote={mockFetchPutNote}
       fetchAddNote={mockFetchAddNote}
-      fetchDeleteNote={mockfetchDeleteNote} />
+      fetchDeleteNote={mockFetchDeleteNote} />
       );
     });
 
-    it.skip('should dispatch fetchAddNotes to props', () => {
+ it('should dispatch fetchAddNote to props', () => {
       const mockDispatch = jest.fn();
+      const note = { title: '', list: [{}], id: 1 };     
 
-      fetchAddNote.mockImplementation(() => {});
+      mapDispatchToProps(mockDispatch).fetchAddNote(note);
 
-      const dispatchReturned = mapDispatchToProps(mockDispatch);
-      const expected = { fetchAddNotes: (expect.any(Function)) };
-
-      expect(dispatchReturned).toEqual(expected);
+      expect(mockDispatch).toHaveBeenCalled();
     });
-
   });
 });
