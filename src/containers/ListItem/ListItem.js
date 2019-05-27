@@ -34,7 +34,8 @@ class ListItem extends Component {
           className="item-input" 
           contentEditable="true"
           onChange={this.handleChange}
-          value={this.state.listItem} />
+          value={this.state.listItem}
+          onKeyPress={this.props.blurInput} />
         <button 
           className="delete-item-btn"
           onClick={this.handleDelete}>
