@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 class ListItem extends Component {
   state = {
     listItem: this.props.item,
-    completed: this.props.completed
+    completed: this.props.completed,
+    inFocus: false
   }
 
   handleChange = (e) => {
@@ -23,6 +24,10 @@ class ListItem extends Component {
     const { listItem, completed } = this.state;
 
     updateListItem(listItem, completed, id);
+
+    this.setState({
+      inFocus: false
+    });
   }
 
   handleDelete = () => {
@@ -31,9 +36,15 @@ class ListItem extends Component {
     deleteListItem(id);
   }
 
+  handleFocus = () => {
+    this.setState({
+      inFocus: true
+    });
+  }
+
   render() {
     return (
-      <div className="ListItem" onBlur={this.handleBlur}>
+      <div className={this.state.inFocus ? 'focused-item' : 'unfocused-item'} onBlur={this.handleBlur}>
         <input type="checkbox" id="item-check" onChange={this.handleComplete}/>
         <input 
           type="text" 
@@ -41,7 +52,8 @@ class ListItem extends Component {
           contentEditable="true"
           onChange={this.handleChange}
           value={this.state.listItem}
-          onKeyPress={this.props.blurInput} />
+          onKeyPress={this.props.blurInput}
+          onFocus={this.handleFocus} />
         <button 
           className="delete-item-btn"
           onClick={this.handleDelete}>

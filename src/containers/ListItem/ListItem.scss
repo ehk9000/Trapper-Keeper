@@ -8,6 +8,16 @@
   }
 }
 
+.unfocused-item {
+  border-top: solid 2px transparent;
+  border-bottom: solid 2px transparent;
+}
+
+.focused-item {
+  border-top: solid 2px $ltGrey;
+  border-bottom: solid 2px $ltGrey;
+}
+
 .delete-item-btn {
   .delete-x {
     color: transparent;
