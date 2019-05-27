@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchAllNotes } from '../../thunks/fetchAllNotes';
 import Note from '../../components/Note/Note';
 import NoteForm from '../NoteForm/NoteForm';
+import {Link} from 'react-router-dom'
 
 export class NotesContainer extends Component {
   componentDidMount() {
@@ -45,6 +46,9 @@ export class NotesContainer extends Component {
 
     return (
       <div className="main-container">
+        <Link to="/new-note">
+          <i class="fas fa-plus add-btn"></i>      
+        </Link>
         <section className="notes-container">
           {displayNotes}
         </section>
