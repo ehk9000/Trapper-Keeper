@@ -7,16 +7,22 @@ import { fetchDeleteNote } from "../../thunks/fetchDeleteNote";
 import { fetchPutNote } from "../../thunks/fetchPutNote";
 
 describe('NoteForm', () => {
+  let list;
   let wrapper;
   let mockFetchPutNote = jest.fn();
   let mockFetchAddNote = jest.fn();
-  let mockfetchDeleteNote = jest.fn();
-    
+  let mockFetchDeleteNote = jest.fn();
+
   beforeEach(() => {
+    list = [
+      { item: 'milk', completed: false, id: 1 },
+      { item: 'water', completed: true, id: 2 }
+    ];
     wrapper = shallow(
       <NoteForm 
       fetchPutNote={mockFetchPutNote}
-      fetchAddNote={mockFetchAddNote} />
+      fetchAddNote={mockFetchAddNote}
+      fetchDeleteNote={mockFetchDeleteNote} />
     );
   });
 
@@ -46,8 +52,27 @@ describe('NoteForm', () => {
     expect(wrapper.state('title')).toEqual('this is a title');
   });
 
+  it('should update an existing list item', () => {
+    wrapper.setState({ list });
 
-  it('should invoke putNote if note already exists', async () => {
+    expect(wrapper.state('list')[0].item).toEqual('milk');
+
+    wrapper.instance().updateListItem('juice', false, 1);
+
+    expect(wrapper.state('list')[0].item).toEqual('juice');
+  });
+
+  it('should delete an existing list item', () => {
+    wrapper.setState({ list });
+    
+    expect(wrapper.state('list').length).toEqual(2);
+
+    wrapper.instance().deleteListItem(1);
+
+    expect(wrapper.state('list').length).toEqual(1);
+  });
+
+  it('should invoke fetchPutNote if note already exists', async () => {
     wrapper.setState({
       id: 1111
     });
@@ -66,25 +91,45 @@ describe('NoteForm', () => {
   });
 
   it('should update list with item input', () => {
-    wrapper.setState({ listItem: 'milk' });
+    wrapper.setState({ listItem: 'eggs' });
 
     wrapper.instance().updateList();
 
-    expect(wrapper.state('list')[0].item).toEqual('milk');
+    expect(wrapper.state('list')[0].item).toEqual('eggs');
   });
 
-  it('should delete an item', () => {
-    const list = [{ listItem: 'milk', completed: false, id:1 },
-                  { listItem: 'water', completed: true, id:2 }];
+  it('should invoke updateList on enter', () => {
+    const mockEvent = { key: 'Enter' }
 
-    wrapper.setState({ list });
+    wrapper.setState({
+      list,
+      listItem: 'juice'
+    });
 
-    wrapper.instance().deleteListItem(1);
-  
-    const expected = [{ listItem: 'water', completed: true, id:2 }];
+    wrapper.instance().handleKeyPress(mockEvent);
 
-    expect(wrapper.state('list')).toEqual(expected);
+    expect(wrapper.state('list')[2].item).toEqual('juice');
+  });
 
+  it('should blur out of inputs on enter', () => {
+    const mockEvent = {
+      key: 'Enter',
+      target: { blur: jest.fn() }
+    }
+
+    wrapper.instance().blurInput(mockEvent);
+
+    expect(mockEvent.target.blur).toHaveBeenCalled();
+  });
+
+  it('should delete itself when clicking on delete icon', () => {
+    wrapper.setState({
+      id: 'abc123'
+    }); 
+
+    wrapper.find('.fa-trash-alt').simulate('click');
+
+    expect(mockFetchDeleteNote).toHaveBeenCalledWith('abc123');
   });
 
   describe('mapStateToProps', () => {
