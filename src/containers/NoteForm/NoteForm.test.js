@@ -62,7 +62,15 @@ describe('NoteForm', () => {
     expect(wrapper.state('list')[0].item).toEqual('juice');
   });
 
-  
+  it('should delete an existing list item', () => {
+    wrapper.setState({ list });
+    
+    expect(wrapper.state('list').length).toEqual(2);
+
+    wrapper.instance().deleteListItem(1);
+
+    expect(wrapper.state('list').length).toEqual(1);
+  });
 
   it('should invoke putNote if note already exists', async () => {
     wrapper.setState({
