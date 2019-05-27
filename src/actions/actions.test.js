@@ -101,4 +101,17 @@ describe('actions', () => {
 
     expect(result).toEqual(expected);
   });
+
+  it('should return a type of setCompleted with an id', () => {
+    const id = 5;
+
+    const expected = {
+      type: 'SET_COMPLETE',
+      isCompleted: id
+    };
+
+    const result = actions.setComplete(id);
+
+    expect(result).toEqual(expected);
+  });
 });
