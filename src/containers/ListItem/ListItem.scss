@@ -16,6 +16,10 @@
 .focused-item {
   border-top: solid 2px $ltGrey;
   border-bottom: solid 2px $ltGrey;
+
+  .delete-x {
+    color: #333;
+  }
 }
 
 .delete-item-btn {
@@ -35,6 +39,10 @@
 .item-input:focus + .delete-item-btn {
   .delete-x {
     color: #999;
+
+    &:hover {
+      color: #333;
+    }
   }
 }
 
