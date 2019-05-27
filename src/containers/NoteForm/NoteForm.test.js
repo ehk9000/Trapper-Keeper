@@ -11,7 +11,7 @@ describe('NoteForm', () => {
   let wrapper;
   let mockFetchPutNote = jest.fn();
   let mockFetchAddNote = jest.fn();
-  let mockfetchDeleteNote = jest.fn();
+  let mockFetchDeleteNote = jest.fn();
 
   beforeEach(() => {
     list = [
@@ -22,7 +22,7 @@ describe('NoteForm', () => {
       <NoteForm 
       fetchPutNote={mockFetchPutNote}
       fetchAddNote={mockFetchAddNote}
-      fetchDeleteNote={mockfetchDeleteNote} />
+      fetchDeleteNote={mockFetchDeleteNote} />
     );
   });
 
@@ -122,14 +122,14 @@ describe('NoteForm', () => {
     expect(mockEvent.target.blur).toHaveBeenCalled();
   });
 
-  it('should delete an item', () => {
-    wrapper.setState({ list });
+  it('should delete itself when clicking on delete icon', () => {
+    wrapper.setState({
+      id: 'abc123'
+    }); 
 
-    wrapper.instance().deleteListItem(1);
-  
-    const expected = [{ item: 'water', completed: true, id: 2 }];
+    wrapper.find('.fa-trash-alt').simulate('click');
 
-    expect(wrapper.state('list')).toEqual(expected);
+    expect(mockFetchDeleteNote).toHaveBeenCalledWith('abc123');
   });
 
   describe('mapStateToProps', () => {
