@@ -48,7 +48,7 @@ class ListItem extends Component {
         <input type="checkbox" id="item-check" onChange={this.handleComplete}/>
         <input 
           type="text" 
-          className="item-input" 
+          className={this.state.completed ? 'item-input completed' : 'item-input'} 
           contentEditable="true"
           onChange={this.handleChange}
           value={this.state.listItem}
