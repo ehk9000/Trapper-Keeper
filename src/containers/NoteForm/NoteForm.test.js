@@ -12,7 +12,7 @@ describe('NoteForm', () => {
   let mockFetchPutNote = jest.fn();
   let mockFetchAddNote = jest.fn();
   let mockfetchDeleteNote = jest.fn();
-    
+
   beforeEach(() => {
     list = [
       { item: 'milk', completed: false, id: 1 },
@@ -72,7 +72,7 @@ describe('NoteForm', () => {
     expect(wrapper.state('list').length).toEqual(1);
   });
 
-  it('should invoke putNote if note already exists', async () => {
+  it('should invoke fetchPutNote if note already exists', async () => {
     wrapper.setState({
       id: 1111
     });
@@ -96,6 +96,20 @@ describe('NoteForm', () => {
     wrapper.instance().updateList();
 
     expect(wrapper.state('list')[0].item).toEqual('milk');
+  });
+
+  it('should invoke updateList on enter', () => {
+    wrapper.setState({
+      list,
+      listItem: 'juice'
+    });
+
+    const mockEvent = { key: 'Enter' }
+    const newListItem = { item: 'juice', completed: false, id: Date.now() }
+
+    wrapper.instance().handleKeyPress(mockEvent);
+
+    expect(wrapper.state('list')).toEqual([...list, newListItem]);
   });
 
   it('should delete an item', () => {
