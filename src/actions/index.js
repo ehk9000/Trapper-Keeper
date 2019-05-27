@@ -27,8 +27,3 @@ export const deleteNote = (id) => ({
   type: 'DELETE_NOTE',
   id
 });
-
-export const setComplete = (id) => ({
-  type: 'SET_COMPLETE',
-  isCompleted: id
-});
