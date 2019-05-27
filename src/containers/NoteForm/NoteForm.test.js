@@ -2,18 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 import { NoteForm, mapDispatchToProps, mapStateToProps} from './NoteForm';
-import * as actions from '../../actions'
+import { fetchAddNote } from "../../thunks/fetchAddNote";
+import { fetchDeleteNote } from "../../thunks/fetchDeleteNote";
+import { fetchPutNote } from "../../thunks/fetchPutNote";
 
 describe('NoteForm', () => {
   let wrapper;
   let mockFetchPutNote = jest.fn();
   let mockFetchAddNote = jest.fn();
-
+  let mockfetchDeleteNote = jest.fn();
+    
   beforeEach(() => {
     wrapper = shallow(
       <NoteForm 
       fetchPutNote={mockFetchPutNote}
-        fetchAddNote={mockFetchAddNote} />
+      fetchAddNote={mockFetchAddNote} />
     );
   });
 
@@ -43,6 +46,7 @@ describe('NoteForm', () => {
     expect(wrapper.state('title')).toEqual('this is a title');
   });
 
+
   it('should invoke putNote if note already exists', async () => {
     wrapper.setState({
       id: 1111
@@ -69,10 +73,24 @@ describe('NoteForm', () => {
     expect(wrapper.state('list')[0].item).toEqual('milk');
   });
 
+  it('should delete an item', () => {
+    const list = [{ listItem: 'milk', completed: false, id:1 },
+                  { listItem: 'water', completed: true, id:2 }];
+
+    wrapper.setState({ list });
+
+    wrapper.instance().deleteListItem(1);
+  
+    const expected = [{ listItem: 'water', completed: true, id:2 }];
+
+    expect(wrapper.state('list')).toEqual(expected);
+
+  });
+
   describe('mapStateToProps', () => {
     it('should return a props object with the notes array', () => {
       const mockNotes = {
-        notes: [{
+          notes: [{
           title: 'groceries',
           list:[{item: 'milk', id: 122523453}, {item: 'eggs', id:12312321}]
           }]
@@ -88,40 +106,27 @@ describe('NoteForm', () => {
     })
   })
   
-  describe.skip('mapDispatchToProps', () => {
-    it('should call a dispatch when using a function from MDTP', () => {
+  describe('mapDispatchToProps', () => {
+
+    beforeEach(() => {
+    wrapper = shallow(
+      <NoteForm 
+      fetchPutNote={mockFetchPutNote}
+      fetchAddNote={mockFetchAddNote}
+      fetchDeleteNote={mockfetchDeleteNote} />
+      );
+    });
+
+    it.skip('should dispatch fetchAddNotes to props', () => {
       const mockDispatch = jest.fn();
-      const mockNotes = {
-        notes: [{
-          title: 'groceries',
-          list:[{item: 'milk', id: 122523453}, {item: 'eggs', id:12312321}]
-          }]
-        }
 
-      const actionToDispatch = actions.addNote(mockNotes)
+      fetchAddNote.mockImplementation(() => {});
 
-      const mappedProps = mapDispatchToProps(mockDispatch)
+      const dispatchReturned = mapDispatchToProps(mockDispatch);
+      const expected = { fetchAddNotes: (expect.any(Function)) };
 
-      mappedProps.addNote(mockNotes)
+      expect(dispatchReturned).toEqual(expected);
+    });
 
-      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
-    })
-
-    it('should call a dispatch when using a function from MDTP', () => {
-
-      const mockNotes = {
-        notes: [{
-          title: 'groceries',
-          list:[{item: 'milk', id: 122523453}, {item: 'eggs', id:12312321}]
-          }]
-        }
-      const actionToDispatch = actions.setNoteTitle(mockNotes)
-      const mockDispatch = jest.fn(() => actionToDispatch);
-
-      const mappedProps = mapDispatchToProps(mockDispatch)
-      mappedProps.addNote(mockNotes)
-
-      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
-    })
-  })
+  });
 });
