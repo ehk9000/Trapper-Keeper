@@ -85,7 +85,7 @@ describe("NotesContainer", () => {
       fetchAllNotes.mockImplementation(() => {});
 
       const dispatchReturned = mapDispatchToProps(mockDispatch);
-      const expected = { fetchAllNotes: (expect.any(Function)) }
+      const expected = { fetchAllNotes: (expect.any(Function)) };
       
       expect(dispatchReturned).toEqual(expected);
     });
