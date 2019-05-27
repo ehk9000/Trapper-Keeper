@@ -97,7 +97,7 @@ export class NoteForm extends Component {
 
   render() {
     if (this.state.submitted) {
-      return <Redirect path="/" />
+      return <Redirect to="/" />
     }
 
     const itemInput = 
