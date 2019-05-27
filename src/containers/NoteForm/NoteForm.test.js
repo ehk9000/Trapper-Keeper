@@ -2,18 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 import { NoteForm, mapDispatchToProps, mapStateToProps} from './NoteForm';
-import * as actions from '../../actions'
+import { fetchAddNote } from "../../thunks/fetchAddNote";
+import { fetchDeleteNote } from "../../thunks/fetchDeleteNote";
+import { fetchPutNote } from "../../thunks/fetchPutNote";
 
 describe('NoteForm', () => {
+  let list;
   let wrapper;
   let mockFetchPutNote = jest.fn();
   let mockFetchAddNote = jest.fn();
+  let mockFetchDeleteNote = jest.fn();
 
   beforeEach(() => {
+    list = [
+      { item: 'milk', completed: false, id: 1 },
+      { item: 'water', completed: true, id: 2 }
+    ];
     wrapper = shallow(
       <NoteForm 
       fetchPutNote={mockFetchPutNote}
-        fetchAddNote={mockFetchAddNote} />
+      fetchAddNote={mockFetchAddNote}
+      fetchDeleteNote={mockFetchDeleteNote} />
     );
   });
 
@@ -42,7 +51,27 @@ describe('NoteForm', () => {
     expect(wrapper.state('title')).toEqual('this is a title');
   });
 
-  it('should invoke putNote if note already exists', async () => {
+  it('should update an existing list item', () => {
+    wrapper.setState({ list });
+
+    expect(wrapper.state('list')[0].item).toEqual('milk');
+
+    wrapper.instance().updateListItem('juice', false, 1);
+
+    expect(wrapper.state('list')[0].item).toEqual('juice');
+  });
+
+  it('should delete an existing list item', () => {
+    wrapper.setState({ list });
+    
+    expect(wrapper.state('list').length).toEqual(2);
+
+    wrapper.instance().deleteListItem(1);
+
+    expect(wrapper.state('list').length).toEqual(1);
+  });
+
+  it('should invoke fetchPutNote if note already exists', async () => {
     wrapper.setState({
       id: 1111
     });
@@ -61,17 +90,51 @@ describe('NoteForm', () => {
   });
 
   it('should update list with item input', () => {
-    wrapper.setState({ listItem: 'milk' });
+    wrapper.setState({ listItem: 'eggs' });
 
     wrapper.instance().updateList();
 
-    expect(wrapper.state('list')[0].item).toEqual('milk');
+    expect(wrapper.state('list')[0].item).toEqual('eggs');
+  });
+
+  it('should invoke updateList on enter', () => {
+    const mockEvent = { key: 'Enter' }
+
+    wrapper.setState({
+      list,
+      listItem: 'juice'
+    });
+
+    wrapper.instance().handleKeyPress(mockEvent);
+
+    expect(wrapper.state('list')[2].item).toEqual('juice');
+  });
+
+  it('should blur out of inputs on enter', () => {
+    const mockEvent = {
+      key: 'Enter',
+      target: { blur: jest.fn() }
+    }
+
+    wrapper.instance().blurInput(mockEvent);
+
+    expect(mockEvent.target.blur).toHaveBeenCalled();
+  });
+
+  it('should delete itself when clicking on delete icon', () => {
+    wrapper.setState({
+      id: 'abc123'
+    }); 
+
+    wrapper.find('.fa-trash-alt').simulate('click');
+
+    expect(mockFetchDeleteNote).toHaveBeenCalledWith('abc123');
   });
 
   describe('mapStateToProps', () => {
     it('should return a props object with the notes array', () => {
       const mockNotes = {
-        notes: [{
+          notes: [{
           title: 'groceries',
           list:[{item: 'milk', id: 122523453}, {item: 'eggs', id:12312321}]
           }]
@@ -87,40 +150,27 @@ describe('NoteForm', () => {
     })
   })
   
-  describe.skip('mapDispatchToProps', () => {
-    it('should call a dispatch when using a function from MDTP', () => {
+  describe('mapDispatchToProps', () => {
+
+    beforeEach(() => {
+    wrapper = shallow(
+      <NoteForm 
+      fetchPutNote={mockFetchPutNote}
+      fetchAddNote={mockFetchAddNote}
+      fetchDeleteNote={mockfetchDeleteNote} />
+      );
+    });
+
+    it.skip('should dispatch fetchAddNotes to props', () => {
       const mockDispatch = jest.fn();
-      const mockNotes = {
-        notes: [{
-          title: 'groceries',
-          list:[{item: 'milk', id: 122523453}, {item: 'eggs', id:12312321}]
-          }]
-        }
 
-      const actionToDispatch = actions.addNote(mockNotes)
+      fetchAddNote.mockImplementation(() => {});
 
-      const mappedProps = mapDispatchToProps(mockDispatch)
+      const dispatchReturned = mapDispatchToProps(mockDispatch);
+      const expected = { fetchAddNotes: (expect.any(Function)) };
 
-      mappedProps.addNote(mockNotes)
+      expect(dispatchReturned).toEqual(expected);
+    });
 
-      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
-    })
-
-    it('should call a dispatch when using a function from MDTP', () => {
-
-      const mockNotes = {
-        notes: [{
-          title: 'groceries',
-          list:[{item: 'milk', id: 122523453}, {item: 'eggs', id:12312321}]
-          }]
-        }
-      const actionToDispatch = actions.setNoteTitle(mockNotes)
-      const mockDispatch = jest.fn(() => actionToDispatch);
-
-      const mappedProps = mapDispatchToProps(mockDispatch)
-      mappedProps.addNote(mockNotes)
-
-      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
-    })
-  })
+  });
 });

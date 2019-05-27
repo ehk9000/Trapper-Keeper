@@ -82,8 +82,14 @@ export class NoteForm extends Component {
     }
   }
 
+  blurInput = (e) => {
+    if (e.key === 'Enter') {
+      e.target.blur();
+    }
+  }
+
   handleDelete = () => {
-   const {id} = this.state;
+   const { id } = this.state;
 
    this.props.fetchDeleteNote(id);
   }
@@ -92,7 +98,7 @@ export class NoteForm extends Component {
     const itemInput = 
       <input 
         type="text"
-        placeholder="List item"
+        placeholder="Add list item"
         name="listItem"
         value={this.state.listItem}
         onChange={this.handleChange}
@@ -105,6 +111,7 @@ export class NoteForm extends Component {
           {...listItem} 
           updateListItem={this.updateListItem}
           deleteListItem={this.deleteListItem}
+          blurInput={this.blurInput}
           key={listItem.id} />
       );
     }
@@ -118,7 +125,8 @@ export class NoteForm extends Component {
             placeholder="Title"
             name="title"
             value={this.state.title}
-            onChange={this.handleChange} />
+            onChange={this.handleChange}
+            onKeyPress={this.blurInput} />
           {displayListItems}
           {itemInput}
           <Link to="/">
