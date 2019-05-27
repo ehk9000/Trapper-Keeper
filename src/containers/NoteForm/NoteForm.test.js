@@ -152,26 +152,30 @@ describe('NoteForm', () => {
   })
   
   describe('mapDispatchToProps', () => {
+    let mockDispatch;
+    let note;
 
     beforeEach(() => {
-    wrapper = shallow(
-      <NoteForm 
-      fetchPutNote={mockFetchPutNote}
-      fetchAddNote={mockFetchAddNote}
-      fetchDeleteNote={mockfetchDeleteNote} />
-      );
+      mockDispatch = jest.fn();
+      note = { title: '', list: [{}], id: 1 };     
     });
 
-    it.skip('should dispatch fetchAddNotes to props', () => {
-      const mockDispatch = jest.fn();
+    it('should dispatch fetchAddNote', () => {
+      mapDispatchToProps(mockDispatch).fetchAddNote(note);
 
-      fetchAddNote.mockImplementation(() => {});
-
-      const dispatchReturned = mapDispatchToProps(mockDispatch);
-      const expected = { fetchAddNotes: (expect.any(Function)) };
-
-      expect(dispatchReturned).toEqual(expected);
+      expect(mockDispatch).toHaveBeenCalled();
     });
 
+    it('should dispatch fetchDeleteNote', () => {
+      mapDispatchToProps(mockDispatch).fetchDeleteNote(note.id);
+
+      expect(mockDispatch).toHaveBeenCalled();
+    });
+    
+    it('should dispatch fetchPutNote', () => {
+      mapDispatchToProps(mockDispatch).fetchPutNote(note);
+
+      expect(mockDispatch).toHaveBeenCalled();
+    });
   });
 });
