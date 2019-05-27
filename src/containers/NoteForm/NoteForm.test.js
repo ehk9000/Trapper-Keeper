@@ -7,16 +7,22 @@ import { fetchDeleteNote } from "../../thunks/fetchDeleteNote";
 import { fetchPutNote } from "../../thunks/fetchPutNote";
 
 describe('NoteForm', () => {
+  let list;
   let wrapper;
   let mockFetchPutNote = jest.fn();
   let mockFetchAddNote = jest.fn();
   let mockfetchDeleteNote = jest.fn();
     
   beforeEach(() => {
+    list = [
+      { item: 'milk', completed: false, id: 1 },
+      { item: 'water', completed: true, id: 2 }
+    ];
     wrapper = shallow(
       <NoteForm 
       fetchPutNote={mockFetchPutNote}
-      fetchAddNote={mockFetchAddNote} />
+      fetchAddNote={mockFetchAddNote}
+      fetchDeleteNote={mockfetchDeleteNote} />
     );
   });
 
@@ -46,6 +52,17 @@ describe('NoteForm', () => {
     expect(wrapper.state('title')).toEqual('this is a title');
   });
 
+  it('should update an existing list item', () => {
+    wrapper.setState({ list });
+
+    expect(wrapper.state('list')[0].item).toEqual('milk');
+
+    wrapper.instance().updateListItem('juice', false, 1);
+
+    expect(wrapper.state('list')[0].item).toEqual('juice');
+  });
+
+  
 
   it('should invoke putNote if note already exists', async () => {
     wrapper.setState({
@@ -74,17 +91,13 @@ describe('NoteForm', () => {
   });
 
   it('should delete an item', () => {
-    const list = [{ listItem: 'milk', completed: false, id:1 },
-                  { listItem: 'water', completed: true, id:2 }];
-
     wrapper.setState({ list });
 
     wrapper.instance().deleteListItem(1);
   
-    const expected = [{ listItem: 'water', completed: true, id:2 }];
+    const expected = [{ item: 'water', completed: true, id: 2 }];
 
     expect(wrapper.state('list')).toEqual(expected);
-
   });
 
   describe('mapStateToProps', () => {
