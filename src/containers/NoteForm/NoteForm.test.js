@@ -91,25 +91,35 @@ describe('NoteForm', () => {
   });
 
   it('should update list with item input', () => {
-    wrapper.setState({ listItem: 'milk' });
+    wrapper.setState({ listItem: 'eggs' });
 
     wrapper.instance().updateList();
 
-    expect(wrapper.state('list')[0].item).toEqual('milk');
+    expect(wrapper.state('list')[0].item).toEqual('eggs');
   });
 
   it('should invoke updateList on enter', () => {
+    const mockEvent = { key: 'Enter' }
+
     wrapper.setState({
       list,
       listItem: 'juice'
     });
 
-    const mockEvent = { key: 'Enter' }
-    const newListItem = { item: 'juice', completed: false, id: Date.now() }
-
     wrapper.instance().handleKeyPress(mockEvent);
 
-    expect(wrapper.state('list')).toEqual([...list, newListItem]);
+    expect(wrapper.state('list')[2].item).toEqual('juice');
+  });
+
+  it('should blur out of inputs on enter', () => {
+    const mockEvent = {
+      key: 'Enter',
+      target: { blur: jest.fn() }
+    }
+
+    wrapper.instance().blurInput(mockEvent);
+
+    expect(mockEvent.target.blur).toHaveBeenCalled();
   });
 
   it('should delete an item', () => {

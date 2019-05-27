@@ -90,7 +90,7 @@ export class NoteForm extends Component {
   }
 
   handleDelete = () => {
-   const {id} = this.state;
+   const { id } = this.state;
 
    this.props.fetchDeleteNote(id);
   }
