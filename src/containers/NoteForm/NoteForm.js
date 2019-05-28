@@ -103,17 +103,32 @@ export class NoteForm extends Component {
         value={this.state.listItem}
         onChange={this.handleChange}
         onKeyPress={this.handleKeyPress} />
-    let displayListItems;
+
+    let incompletedList;
+    let incompletedListItems;
+    let completedList;
+    let completedListItems;
 
     if (this.state.list.length) {
-      displayListItems = this.state.list.map(listItem => 
+      incompletedList = this.state.list.filter(item => !item.completed);
+
+      incompletedListItems = incompletedList.map(item => 
         <ListItem 
-          {...listItem} 
+          {...item} 
           updateListItem={this.updateListItem}
           deleteListItem={this.deleteListItem}
           blurInput={this.blurInput}
-          key={listItem.id} />
-      );
+          key={item.id} /> );
+
+      completedList = this.state.list.filter(item => item.completed);
+
+      completedListItems = completedList.map(item => 
+        <ListItem 
+          {...item} 
+          updateListItem={this.updateListItem}
+          deleteListItem={this.deleteListItem}
+          blurInput={this.blurInput}
+          key={item.id} /> );
     }
 
     return (
@@ -127,8 +142,9 @@ export class NoteForm extends Component {
             value={this.state.title}
             onChange={this.handleChange}
             onKeyPress={this.blurInput} />
-          {displayListItems}
+          {incompletedListItems}
           {itemInput}
+          {completedListItems}
           <Link to="/">
             <i className="far fa-trash-alt" onClick={this.handleDelete} ></i>
             <button onClick={this.handleSave}>Save</button>
