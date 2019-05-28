@@ -7,7 +7,8 @@ export const fetchPutNote = (note) => {
     const body = {
       title: note.title,
       list: note.list,
-      id: note.id
+      id: note.id,
+      background: note.background
     }
 
     const options = {

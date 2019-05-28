@@ -22,6 +22,7 @@
 
   input,
   button {
+    background: transparent;
     border: 0;
     // color: #888;
     // font-size: .875rem;
@@ -34,6 +35,14 @@
     font-size: 1.3em;
     padding: 5px 0 10px 0;
   }
+}
+
+.fa-plus {
+  color: $dkGrey
+}
+
+.hide {
+  display: none;
 }
 
 .list-items-wrapper {
@@ -68,4 +77,3 @@
     color: $black;
   }
 }
-
