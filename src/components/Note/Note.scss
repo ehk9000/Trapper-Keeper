@@ -6,15 +6,24 @@
   display: inline;
   flex-direction: column;
   margin: 1%;
-  min-height: 30px;
-  padding: 10px;
+  min-height: 130px;
+  padding: 4px 12px;
   text-decoration: none;
   width: 250px;
 
   h3 {
-    font-size: 18px;
-    font-weight: 400; 
+    font-size: 16px;
+    font-weight: 500; 
+    margin: 0 0 5px 0;
   }
+
+  p {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  
 }
 
 
