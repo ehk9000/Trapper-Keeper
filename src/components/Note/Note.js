@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 const Note = (props) => {
   let { title, list, id} = props;
-
   let incompleteItems = list.filter(item => !item.completed);
   incompleteItems = incompleteItems.map(item => {
     return <p key={item.id} className="note-item">{item.item}</p>
@@ -15,7 +14,7 @@ const Note = (props) => {
   });
 
   return (
-    <section className="note-card">
+    <section className="note-card" style={{backgroundColor: props.background}}>
       <Link to={`/notes/${id}`} className="noteLink"> 
         <article>
           <h3>{title}</h3>

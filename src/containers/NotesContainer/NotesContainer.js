@@ -13,12 +13,12 @@ export class NotesContainer extends Component {
 
   render() {
     let displayNotes;
-    let { notes, location} = this.props;
+    let { notes, location, fetchDeleteNote} = this.props;
     let notePopup;
 
     if (notes.length) {  
       displayNotes = notes.map(note => 
-        <Note {...note} key={note.id} fetchDeleteNote={this.props.fetchDeleteNote} />
+        <Note {...note} key={note.id} fetchDeleteNote={fetchDeleteNote} />
       );
     } else {
       displayNotes = <div className='empty-notes'>
@@ -49,7 +49,7 @@ export class NotesContainer extends Component {
     }
 
     return (
-      <div className="main-container">
+      <div className="main-container" >
         <Link to="/new-note">
           <i className="fas fa-plus add-btn"></i>      
         </Link>

@@ -21,8 +21,8 @@ export class NoteForm extends Component {
 
   componentDidMount() {
     if (this.props.note) {
-      const {id, title, list} = this.props.note;
-      this.setState({list, title, id});
+      const {id, title, list, background} = this.props.note;
+      this.setState({list, title, id, background});
     }
   }
 
@@ -55,12 +55,12 @@ export class NoteForm extends Component {
   }
 
   handleSave = async () => {
-    const { title, list, id } = this.state;
+    const { title, list, id, background } = this.state;
 
     await this.updateList();
 
     if (this.state.id) {
-      this.props.fetchPutNote({ title, list, id });
+      this.props.fetchPutNote({ title, list, id, background });
     } else {
       this.props.fetchAddNote({ title, list, id: Date.now() });
     }
@@ -97,7 +97,6 @@ export class NoteForm extends Component {
 
   colorChange = (e) => {
     const { value } = e.target
-    console.log(value)
     this.setState({
       background: value
     })
@@ -158,7 +157,10 @@ export class NoteForm extends Component {
             <i className="far fa-trash-alt" onClick={this.handleDelete} ></i>
             <button onClick={this.handleSave}>Save</button>
           </Link>
-          <input type="color" value={this.state.background} onChange={this.colorChange}/>
+          <label htmlFor="color" className="">
+            <i className="fas fa-palette"></i>
+          </label>
+            <input type="color" id="color" value={this.state.background} onChange={this.colorChange} className="hide"/>
         </section>
       </div>
     );
