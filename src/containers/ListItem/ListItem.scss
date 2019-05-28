@@ -1,6 +1,7 @@
 .item-input {
+  color: $black;
   margin: 0 5px;
-  padding: 5px;
+  padding: 7px;
   width: 90%;
 
   &:focus {
@@ -48,5 +49,5 @@
 
 .completed {
   text-decoration: line-through;
-  color: $ltGrey;
+  color: #999 !important;
 }
