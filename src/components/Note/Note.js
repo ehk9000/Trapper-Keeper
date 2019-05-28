@@ -2,9 +2,9 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 
 const Note = (props) => {
-  let {title, list, id} = props;
+  let { title, list, id} = props;
   let listItems = list.map(item => {
-    return <p key={item.id}>{item.item}</p>
+    return <p key={item.id} className={item.completed ? 'completed-view' : 'note-item'}>{item.item}</p>
   });
 
   return (
