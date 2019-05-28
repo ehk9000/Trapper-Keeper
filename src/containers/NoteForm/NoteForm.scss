@@ -24,13 +24,14 @@
   button {
     background: transparent;
     border: 0;
-    color: #888;
-    font-size: .875rem;
-    font-weight: 400;
+    // color: #888;
+    // font-size: .875rem;
+    // font-weight: 400;
     line-height: 1.25rem;
   }
 
   .note-title {
+    color: $black;
     font-size: 1.3em;
     padding: 5px 0 10px 0;
   }
@@ -42,4 +43,37 @@
 
 .hide {
   display: none;
+}
+
+.list-items-wrapper {
+  padding: 0 15px;
+}
+
+.new-item-input {
+  .fa-plus {
+    color: #999;
+    margin: 0 8px 0 0;
+  }
+
+  input {
+    outline: none;
+    padding: 7px 0;
+  }
+}
+
+.form-btn-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0 0 0;
+}
+
+.save-btn,
+.fa-trash-alt {
+  color: #888;
+  cursor: pointer;
+  padding: 5px 0;
+
+  &:hover {
+    color: $black;
+  }
 }
