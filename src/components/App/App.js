@@ -1,5 +1,5 @@
 import React from 'react';
-import Controls from '../../components/Controls/Controls';
+import Controls from '../Controls/Controls'
 
 function App() {
   return (
