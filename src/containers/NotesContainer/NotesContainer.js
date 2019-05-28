@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAllNotes } from '../../thunks/fetchAllNotes';
-import { fetchDeleteNote } from '../../thunks/fetchDeleteNote';
 import Note from '../../components/Note/Note';
 import NoteForm from '../NoteForm/NoteForm';
-import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom'
 
 export class NotesContainer extends Component {
   componentDidMount() {
@@ -18,7 +17,7 @@ export class NotesContainer extends Component {
 
     if (notes.length) {  
       displayNotes = notes.map(note => 
-        <Note {...note} key={note.id} fetchDeleteNote={this.props.fetchDeleteNote} />
+        <Note {...note} key={note.id}/>
       );
     } else {
       displayNotes = <div className='empty-notes'>
@@ -51,7 +50,7 @@ export class NotesContainer extends Component {
     return (
       <div className="main-container">
         <Link to="/new-note">
-          <i className="fas fa-plus add-btn"></i>      
+          <i class="fas fa-plus add-btn"></i>      
         </Link>
         <section className="notes-container">
           {displayNotes}
@@ -67,8 +66,7 @@ export const mapStateToProps = state => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  fetchAllNotes: () => dispatch(fetchAllNotes()),
-  fetchDeleteNote: id => dispatch(fetchDeleteNote(id))
+  fetchAllNotes: () => dispatch(fetchAllNotes())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotesContainer);
