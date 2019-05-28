@@ -14,7 +14,8 @@ export class NoteForm extends Component {
       title: '',
       list: [],
       listItem: '',
-      id: null
+      id: null,
+      background: ''
     }
   }
 
@@ -64,7 +65,7 @@ export class NoteForm extends Component {
       this.props.fetchAddNote({ title, list, id: Date.now() });
     }
 
-    this.setState({ list:[], title: '', submitted: true });
+    this.setState({ list:[], title: ''});
   }
 
   updateList = async () => {
@@ -92,6 +93,14 @@ export class NoteForm extends Component {
    const { id } = this.state;
 
    this.props.fetchDeleteNote(id);
+  }
+
+  colorChange = (e) => {
+    const { value } = e.target
+    console.log(value)
+    this.setState({
+      background: value
+    })
   }
 
   render() {
@@ -133,7 +142,7 @@ export class NoteForm extends Component {
 
     return (
       <div className="note-form-bg">
-        <section className="note-form">
+        <section className="note-form" style={{backgroundColor: this.state.background}}>
           <input 
             type="text" 
             className="note-title"
@@ -149,6 +158,7 @@ export class NoteForm extends Component {
             <i className="far fa-trash-alt" onClick={this.handleDelete} ></i>
             <button onClick={this.handleSave}>Save</button>
           </Link>
+          <input type="color" value={this.state.background} onChange={this.colorChange}/>
         </section>
       </div>
     );
