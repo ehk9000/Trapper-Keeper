@@ -8,15 +8,12 @@ const Note = (props) => {
   });
 
   return (
-    <section className='note-card'>
-      <span className="delete-x" onClick={() => props.fetchDeleteNote(id)}>X</span>
-      <Link to={`/notes/${id}`} > 
-        <article >
-          <h1>{title}</h1>
-          {listItems}
-        </article>
-      </Link>
-    </section>
+    <Link to={`/notes/${id}`} className='note-card'> 
+      <article>
+        <h3>{title}</h3>
+        {listItems}
+      </article>
+    </Link>
   );
 }
 
