@@ -1,3 +1,7 @@
+.flex-container {
+  display: flex;
+}
+
 .notes-container {
   display: grid;
   grid-gap: 25px;
@@ -20,7 +24,14 @@
   }
 }
 
+.sidebar {
+  display: inline;
+}
+
+
+
 .add-btn {
+  color: $black;
   font-size: 24px;
-  margin-left: 130px;
+  margin: 45px 40px;
 }

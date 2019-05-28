@@ -5,7 +5,7 @@ const Note = (props) => {
   let { title, list, id} = props;
 
   let incompleteItems = list.filter(item => !item.completed);
-  
+
   incompleteItems = incompleteItems.map(item => {
     return <p key={item.id} className="note-item">{item.item}</p>
   });
@@ -22,6 +22,7 @@ const Note = (props) => {
         <article>
           <h3>{title}</h3>
           {incompleteItems}
+          <hr />
           {completedItems}
         </article>
       </Link>

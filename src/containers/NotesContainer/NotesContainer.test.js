@@ -82,7 +82,7 @@ describe("NotesContainer", () => {
     it("should map dispatch to props", () => {
       const mockDispatch = jest.fn();
 
-      fetchAllNotes.mockImplementation(() => {});
+       fetchAllNotes.mockImplementation(() => {});
 
       const dispatchReturned = mapDispatchToProps(mockDispatch);
       const expected = { fetchAllNotes: (expect.any(Function)) };

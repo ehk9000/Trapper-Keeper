@@ -8,6 +8,10 @@
   margin: 1%;
   padding: 15px;
   width: 250px;
+
+  .fa-plus {
+    color: $dkGrey
+  }
 }
 
 .noteLink {
@@ -24,18 +28,22 @@
     margin: 0 0 10px 0;
   }
 
+  hr {
+    border: .5px solid;
+    color: $ltGrey;
+  }
+
   .note-item {
     font-size: 15px;
-    font-weight: 300;
+    font-weight: 400;
     text-decoration: none;
     margin: 0;
     padding: 5px;
   }
 }
 
-
 .note-card:hover {
-  box-shadow: 1px 2px 5px #666;
+  box-shadow: 1px 2px 3px #999;
 }
 
 .note-card:hover > .delete-btn {
@@ -47,14 +55,10 @@
   visibility: hidden;
 }
 
-.fa-plus {
-  color: $dkGrey
-}
-
 .completed-view {
   color: $ltGrey;
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 400;
   text-decoration: line-through;
   margin: 0;
   padding: 5px;
