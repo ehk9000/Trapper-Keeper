@@ -8,12 +8,15 @@ const Note = (props) => {
   });
 
   return (
-    <Link to={`/notes/${id}`} className='note-card'> 
-      <article>
-        <h3>{title}</h3>
-        {listItems}
-      </article>
-    </Link>
+    <section className="note-card">
+      <span className='delete-x' onClick={() => props.fetchDeleteNote(id)}>X</span>
+      <Link to={`/notes/${id}`} className="noteLink"> 
+        <article>
+          <h3>{title}</h3>
+          {listItems}
+        </article>
+      </Link>
+    </section>
   );
 }
 
