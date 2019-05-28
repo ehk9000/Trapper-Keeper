@@ -1,15 +1,31 @@
 .note-card {
-  border: $black 1px solid;
+  border: $ltGrey 1px solid;
   border-radius: 5px;
+  color: $black; 
   display: flex;
   display: inline;
   flex-direction: column;
   margin: 1%;
-  min-height: 30px;
-  padding-left: 4px;
+  min-height: 130px;
+  padding: 4px 12px;
   text-decoration: none;
   width: 250px;
+
+  h3 {
+    font-size: 18px;
+    font-weight: 400; 
+    margin: 0 0 5px 0;
+  }
+
+  p {
+    font-size: 15px;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  
 }
+
 
 .note-card:hover {
   box-shadow: 1px 2px 5px #666;

@@ -16,7 +16,6 @@ const Note = (props) => {
           {listItems}
         </article>
       </Link>
-
     </section>
   );
 }

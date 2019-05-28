@@ -16,12 +16,15 @@ export class NotesContainer extends Component {
     let { notes, location} = this.props;
     let notePopup;
 
-    if (notes) {  
+    if (notes.length) {  
       displayNotes = notes.map(note => 
         <Note {...note} key={note.id} fetchDeleteNote={this.props.fetchDeleteNote} />
       );
     } else {
-      displayNotes = <h3>Add Notes Here</h3>
+      displayNotes = <div className='empty-notes'>
+        <i class="fas fa-edit"></i>
+        <p>Notes will display here</p>
+      </div>
     }
 
     if (location.pathname === "/new-note" ) {
