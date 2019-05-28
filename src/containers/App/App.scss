@@ -8,14 +8,14 @@
   h1 {
     .fas {
       color: $gold;
-      height: 40px;
-      width: 40px;
+      margin: 0 5px 0 0;
     }
     
-    font-size: 27px;
-    color: $dkGrey;
+    color: $black;
+    font-family: 'Patua One', 'Source Sans Pro';
+    font-size: 3em;
     font-weight: 300;
-    padding-left: 4px;
+    padding-left: 10px;
 
   }
 }

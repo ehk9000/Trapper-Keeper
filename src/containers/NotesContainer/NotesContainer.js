@@ -49,13 +49,17 @@ export class NotesContainer extends Component {
     }
 
     return (
-      <div className="main-container" >
-        <Link to="/new-note">
-          <i className="fas fa-plus add-btn"></i>      
-        </Link>
-        <section className="notes-container">
-          {displayNotes}
-        </section>
+      <div className="main-container">
+        <div className="flex-container">
+          <div className="sidebar">
+            <Link to="/new-note" className="add-link">
+              <i className="fas fa-plus add-btn"></i>     
+            </Link>
+          </div>
+          <section className="notes-container">
+            {displayNotes}
+          </section>
+        </div>
         {notePopup}
       </div>
     );
