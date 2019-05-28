@@ -21,7 +21,7 @@ export class NotesContainer extends Component {
       );
     } else {
       displayNotes = <div className='empty-notes'>
-        <i class="fas fa-edit"></i>
+        <i className="fas fa-edit"></i>
         <p>Notes will display here</p>
       </div>
     }
@@ -50,7 +50,7 @@ export class NotesContainer extends Component {
     return (
       <div className="main-container">
         <Link to="/new-note">
-          <i class="fas fa-plus add-btn"></i>      
+          <i className="fas fa-plus add-btn"></i>      
         </Link>
         <section className="notes-container">
           {displayNotes}

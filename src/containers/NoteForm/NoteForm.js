@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchAddNote } from '../../thunks/fetchAddNote';
 import { fetchPutNote } from '../../thunks/fetchPutNote';
 import { fetchDeleteNote } from '../../thunks/fetchDeleteNote'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import ListItem from '../ListItem/ListItem';
 
 export class NoteForm extends Component {
@@ -14,7 +14,8 @@ export class NoteForm extends Component {
       title: '',
       list: [],
       listItem: '',
-      id: null
+      id: null,
+      submitted: false
     }
   }
 
@@ -64,7 +65,7 @@ export class NoteForm extends Component {
       this.props.fetchAddNote({ title, list, id: Date.now() });
     }
 
-    this.setState({ list:[], title: '', submitted: true });
+    this.setState({ list:[], title: '', submitted: true});
   }
 
   updateList = async () => {
@@ -94,6 +95,14 @@ export class NoteForm extends Component {
    this.props.fetchDeleteNote(id);
   }
 
+  renderRedirect = () => {
+    console.log('hello')
+    if(this.state.submitted) {
+    return <Redirect to="/" />
+    }
+  }
+
+
   render() {
     const itemInput = 
       <input 
@@ -118,7 +127,8 @@ export class NoteForm extends Component {
 
     return (
       <div className="note-form-bg">
-        <section className="note-form">
+        {this.renderRedirect()}
+        <section className="note-form" onBlur={this.handleSave}>
           <input 
             type="text" 
             className="note-title"
