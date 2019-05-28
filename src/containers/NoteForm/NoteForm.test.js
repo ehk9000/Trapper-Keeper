@@ -6,6 +6,10 @@ import { fetchAddNote } from "../../thunks/fetchAddNote";
 import { fetchDeleteNote } from "../../thunks/fetchDeleteNote";
 import { fetchPutNote } from "../../thunks/fetchPutNote";
 
+jest.mock('../../thunks/fetchAddNote');
+jest.mock('../../thunks/fetchDeleteNote');
+jest.mock('../../thunks/fetchPutNote');
+
 describe('NoteForm', () => {
   let list;
   let wrapper;
@@ -151,23 +155,36 @@ describe('NoteForm', () => {
   })
   
   describe('mapDispatchToProps', () => {
+    let mockDispatch;
+    let note;
 
     beforeEach(() => {
-    wrapper = shallow(
-      <NoteForm 
-      fetchPutNote={mockFetchPutNote}
-      fetchAddNote={mockFetchAddNote}
-      fetchDeleteNote={mockFetchDeleteNote} />
-      );
+      mockDispatch = jest.fn();
+      note = { title: '', list: [{}], id: 1 };   
     });
 
- it('should dispatch fetchAddNote to props', () => {
-      const mockDispatch = jest.fn();
-      const note = { title: '', list: [{}], id: 1 };     
+    it('should dispatch fetchAddNote', () => {
+      const thunk = fetchAddNote(note)
 
       mapDispatchToProps(mockDispatch).fetchAddNote(note);
 
-      expect(mockDispatch).toHaveBeenCalled();
+      expect(mockDispatch).toHaveBeenCalledWith(thunk);
+    });
+
+    it('should dispatch fetchDeleteNote', () => {
+      const thunk = fetchDeleteNote(note.id);
+
+      mapDispatchToProps(mockDispatch).fetchDeleteNote(note.id);
+
+      expect(mockDispatch).toHaveBeenCalledWith(thunk);
+    });
+    
+    it('should dispatch fetchPutNote', () => {
+      const thunk = fetchPutNote(note);
+
+      mapDispatchToProps(mockDispatch).fetchPutNote(note);
+
+      expect(mockDispatch).toHaveBeenCalledWith(thunk);
     });
   });
 });
