@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 class ListItem extends Component {
   state = {
-    listItem: this.props.item
+    listItem: this.props.item,
+    completed: this.props.completed
   }
 
   handleChange = (e) => {
@@ -11,9 +12,15 @@ class ListItem extends Component {
     });
   }
 
+  handleComplete = (e) => {
+    this.setState({
+      completed: !this.state.completed
+    })
+  }
+
   handleBlur = () => {
-    const { updateListItem, completed, id } = this.props;
-    const { listItem } = this.state;
+    const { updateListItem, id } = this.props;
+    const { listItem, completed } = this.state;
 
     updateListItem(listItem, completed, id);
   }
@@ -27,7 +34,7 @@ class ListItem extends Component {
   render() {
     return (
       <div className="ListItem" onBlur={this.handleBlur}>
-        <input type="checkbox" id="item-check" />
+        <input type="checkbox" id="item-check" onChange={this.handleComplete}/>
         <input 
           type="text" 
           className="item-input" 
