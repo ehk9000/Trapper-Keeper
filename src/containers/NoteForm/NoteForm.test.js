@@ -34,15 +34,6 @@ describe('NoteForm', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should have a default state', () => {
-    expect(wrapper.state()).toEqual({
-      title: '',
-      list: [],
-      listItem: '',
-      id: null
-    });
-  });
-
   it('should update title or list item with keypress', () => {
     expect(wrapper.state('title')).toEqual('');
 

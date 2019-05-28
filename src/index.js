@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
 import { rootReducer } from './reducers/index';
 import './styles/index.scss';
-import App from './containers/App/App';
+import App from './components/App/App';
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
