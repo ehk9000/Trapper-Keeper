@@ -5,11 +5,13 @@ const Note = (props) => {
   let { title, list, id} = props;
 
   let incompleteItems = list.filter(item => !item.completed);
+  
   incompleteItems = incompleteItems.map(item => {
     return <p key={item.id} className="note-item">{item.item}</p>
   });
 
   let completedItems = list.filter(item => item.completed);
+
   completedItems = completedItems.map(item => {
     return <p key={item.id} className="completed-view">{item.item}</p>
   });

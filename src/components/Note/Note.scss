@@ -6,7 +6,7 @@
   display: inline;
   flex-direction: column;
   margin: 1%;
-  padding: 4px 12px;
+  padding: 15px;
   width: 250px;
 }
 
@@ -21,7 +21,7 @@
   h3 {
     font-size: 18px;
     font-weight: 400;
-    margin: 0 0 5px 0;
+    margin: 0 0 10px 0;
   }
 
   .note-item {
@@ -29,6 +29,7 @@
     font-weight: 300;
     text-decoration: none;
     margin: 0;
+    padding: 5px;
   }
 }
 
@@ -51,8 +52,10 @@
 }
 
 .completed-view {
-  text-decoration: line-through;
   color: $ltGrey;
+  font-size: 15px;
+  font-weight: 300;
+  text-decoration: line-through;
   margin: 0;
-
+  padding: 5px;
 }
