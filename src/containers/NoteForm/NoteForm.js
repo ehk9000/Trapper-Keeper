@@ -15,7 +15,8 @@ export class NoteForm extends Component {
       list: [],
       listItem: '',
       id: null,
-      inFocus: false
+      inFocus: false,
+      changesMade: false
     }
   }
 
@@ -41,7 +42,8 @@ export class NoteForm extends Component {
     });
 
     this.setState({
-      list: newList
+      list: newList,
+      changesMade: true
     });
   }
 
@@ -50,7 +52,8 @@ export class NoteForm extends Component {
     const newList = list.filter(item => item.id !== id);
 
     this.setState({
-      list: newList
+      list: newList,
+      changesMade: true
     });
   }
 
@@ -73,7 +76,8 @@ export class NoteForm extends Component {
 
     await this.setState({
       list: [...this.state.list, { item: newItem, completed: false, id: Date.now() }],
-      listItem: ''
+      listItem: '',
+      changesMade: true
     });
   }
 
@@ -84,6 +88,7 @@ export class NoteForm extends Component {
   }
 
   blurInput = (e) => {
+    console.log('blur')
     if (e.key === 'Enter') {
       e.target.blur();
     }
@@ -96,14 +101,12 @@ export class NoteForm extends Component {
   }
 
   focusInput = () => {
-    console.log('focus')
     this.setState({
       inFocus: true
     });
   }
 
-  blurInput = () => {
-    console.log('blur')
+  focusOutInput = () => {
     this.setState({
       inFocus: false
     });
@@ -114,6 +117,7 @@ export class NoteForm extends Component {
     let incompletedListItems;
     let completedList;
     let completedListItems;
+    let btnText;
 
     if (this.state.list.length) {
       incompletedList = this.state.list.filter(item => !item.completed);
@@ -136,6 +140,10 @@ export class NoteForm extends Component {
           blurInput={this.blurInput}
           key={item.id} /> );
     }
+
+    btnText = this.state.changesMade
+      ? 'Save'
+      : 'Close';
 
     return (
       <div className="note-form-bg">
@@ -162,7 +170,7 @@ export class NoteForm extends Component {
                 onChange={this.handleChange}
                 onKeyPress={this.handleKeyPress}
                 onFocus={this.focusInput}
-                onBlur={this.blurInput} />
+                onBlur={this.focusOutInput} />
             </div>
             <hr />
             {completedListItems}
@@ -171,7 +179,7 @@ export class NoteForm extends Component {
                 <i className="far fa-trash-alt" onClick={this.handleDelete}></i>
               </Link>
               <Link to="/">
-                <button className="save-btn" onClick={this.handleSave}>Save</button>
+                <button className="save-btn" onClick={this.handleSave}>{btnText}</button>
               </Link>
             </div>
           </div>
