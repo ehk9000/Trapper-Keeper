@@ -38,6 +38,17 @@
   box-shadow: 1px 2px 5px #666;
 }
 
+.note-card:hover > .delete-btn {
+  visibility: visible;
+
+}
+
+.delete-btn {
+  visibility: hidden;
+}
+
+
+
 .fa-plus {
   color: $dkGrey
 }

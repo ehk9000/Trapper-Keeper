@@ -9,13 +9,13 @@ const Note = (props) => {
 
   return (
     <section className="note-card">
-      <span className='delete-x' onClick={() => props.fetchDeleteNote(id)}>X</span>
       <Link to={`/notes/${id}`} className="noteLink"> 
         <article>
           <h3>{title}</h3>
           {listItems}
         </article>
       </Link>
+      <i className="far fa-trash-alt delete-btn" onClick={() => props.fetchDeleteNote(id)} ></i>
     </section>
   );
 }
