@@ -14,7 +14,8 @@ export class NoteForm extends Component {
       title: '',
       list: [],
       listItem: '',
-      id: null
+      id: null,
+      inFocus: false
     }
   }
 
@@ -94,16 +95,21 @@ export class NoteForm extends Component {
    this.props.fetchDeleteNote(id);
   }
 
-  render() {
-    const itemInput = 
-      <input 
-        type="text"
-        placeholder="Add list item"
-        name="listItem"
-        value={this.state.listItem}
-        onChange={this.handleChange}
-        onKeyPress={this.handleKeyPress} />
+  focusInput = () => {
+    console.log('focus')
+    this.setState({
+      inFocus: true
+    });
+  }
 
+  blurInput = () => {
+    console.log('blur')
+    this.setState({
+      inFocus: false
+    });
+  }
+
+  render() {
     let incompletedList;
     let incompletedListItems;
     let completedList;
@@ -142,13 +148,33 @@ export class NoteForm extends Component {
             value={this.state.title}
             onChange={this.handleChange}
             onKeyPress={this.blurInput} />
-          {incompletedListItems}
-          {itemInput}
-          {completedListItems}
-          <Link to="/">
-            <i className="far fa-trash-alt" onClick={this.handleDelete} ></i>
-            <button onClick={this.handleSave}>Save</button>
-          </Link>
+          <div className="list-items-wrapper">
+            {incompletedListItems}
+            <div className={this.state.inFocus
+                  ? 'focused-item new-item-input'
+                  : 'unfocused-item new-item-input'}>
+              <i class="fas fa-plus"></i>
+              <input 
+                type="text"
+                placeholder="Add list item"
+                name="listItem"
+                value={this.state.listItem}
+                onChange={this.handleChange}
+                onKeyPress={this.handleKeyPress}
+                onFocus={this.focusInput}
+                onBlur={this.blurInput} />
+            </div>
+            <hr />
+            {completedListItems}
+            <div className="form-btn-wrapper">
+              <Link to="/">
+                <i className="far fa-trash-alt" onClick={this.handleDelete}></i>
+              </Link>
+              <Link to="/">
+                <button className="save-btn" onClick={this.handleSave}>Save</button>
+              </Link>
+            </div>
+          </div>
         </section>
       </div>
     );
