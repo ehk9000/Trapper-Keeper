@@ -1,19 +1,53 @@
 .note-card {
-  border: $black 1px solid;
+  border: $ltGrey 1px solid;
   border-radius: 5px;
+  color: $black; 
   display: flex;
   display: inline;
   flex-direction: column;
   margin: 1%;
-  min-height: 30px;
-  padding-left: 4px;
-  text-decoration: none;
+  // min-height: 130px;
+  padding: 4px 12px;
   width: 250px;
 }
+
+.noteLink {
+  color: $black;
+  text-decoration: none;
+
+  article {
+    min-height: 120px;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0 0 5px 0;
+  }
+
+  p {
+    font-size: 15px;
+    font-weight: 300;
+    margin: 0;
+    text-decoration: none;
+  }
+}
+
 
 .note-card:hover {
   box-shadow: 1px 2px 5px #666;
 }
+
+.note-card:hover > .delete-btn {
+  visibility: visible;
+
+}
+
+.delete-btn {
+  visibility: hidden;
+}
+
+
 
 .fa-plus {
   color: $dkGrey

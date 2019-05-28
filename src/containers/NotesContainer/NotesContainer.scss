@@ -5,6 +5,20 @@
   padding: 40px;
 }
 
+.empty-notes {
+  color: $dkGrey;
+  font-size: 20px;
+  font-weight: 300;
+  margin: auto;
+  text-align: center;
+
+
+  .fas {
+    color: $ltGrey;
+    font-size: 5rem;
+  }
+}
+
 .add-btn {
   font-size: 24px;
   margin-left: 130px;
