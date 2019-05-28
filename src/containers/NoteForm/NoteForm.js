@@ -15,6 +15,7 @@ export class NoteForm extends Component {
       list: [],
       listItem: '',
       id: null,
+      background: '',
       inFocus: false,
       changesMade: false
     }
@@ -22,8 +23,8 @@ export class NoteForm extends Component {
 
   componentDidMount() {
     if (this.props.note) {
-      const {id, title, list} = this.props.note;
-      this.setState({list, title, id});
+      const {id, title, list, background} = this.props.note;
+      this.setState({list, title, id, background});
     }
   }
 
@@ -58,17 +59,17 @@ export class NoteForm extends Component {
   }
 
   handleSave = async () => {
-    const { title, list, id } = this.state;
+    const { title, list, id, background } = this.state;
 
     await this.updateList();
 
     if (this.state.id) {
-      this.props.fetchPutNote({ title, list, id });
+      this.props.fetchPutNote({ title, list, id, background });
     } else {
       this.props.fetchAddNote({ title, list, id: Date.now() });
     }
 
-    this.setState({ list:[], title: '', submitted: true });
+    this.setState({ list:[], title: ''});
   }
 
   updateList = async () => {
@@ -100,6 +101,13 @@ export class NoteForm extends Component {
    this.props.fetchDeleteNote(id);
   }
 
+  colorChange = (e) => {
+    const { value } = e.target
+    this.setState({
+      background: value
+    })
+  }
+          
   focusInput = () => {
     this.setState({
       inFocus: true
@@ -147,7 +155,7 @@ export class NoteForm extends Component {
 
     return (
       <div className="note-form-bg">
-        <section className="note-form">
+        <section className="note-form" style={{backgroundColor: this.state.background}}>
           <input 
             type="text" 
             className="note-title"
@@ -156,6 +164,7 @@ export class NoteForm extends Component {
             value={this.state.title}
             onChange={this.handleChange}
             onKeyPress={this.blurInput} />
+
           <div className="list-items-wrapper">
             {incompletedListItems}
             <div className={this.state.inFocus
@@ -181,6 +190,10 @@ export class NoteForm extends Component {
               <Link to="/">
                 <button className="save-btn" onClick={this.handleSave}>{btnText}</button>
               </Link>
+              <label htmlFor="color" className="">
+                <i className="fas fa-palette"></i>
+              </label>
+              <input type="color" id="color" value={this.state.background} onChange={this.colorChange} className="hide"/>
             </div>
           </div>
         </section>
