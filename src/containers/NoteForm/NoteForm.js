@@ -5,7 +5,7 @@ import { fetchAddNote } from '../../thunks/fetchAddNote';
 import { fetchPutNote } from '../../thunks/fetchPutNote';
 import { fetchDeleteNote } from '../../thunks/fetchDeleteNote'
 import { Link } from 'react-router-dom';
-import ListItem from '../ListItem/ListItem';
+import ListItem from '../../components/ListItem/ListItem';
 
 export class NoteForm extends Component {
   constructor() {
