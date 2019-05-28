@@ -18,11 +18,11 @@ export class NotesContainer extends Component {
 
     if (notes.length) {  
       displayNotes = notes.map(note => 
-        <Note {...note} key={note.id} fetchDeleteNote={this.props.fetchDeleteNote}/>
+        <Note {...note} key={note.id} fetchDeleteNote={this.props.fetchDeleteNote} />
       );
     } else {
       displayNotes = <div className='empty-notes'>
-        <i class="fas fa-edit"></i>
+        <i className="fas fa-edit"></i>
         <p>Notes will display here</p>
       </div>
     }
