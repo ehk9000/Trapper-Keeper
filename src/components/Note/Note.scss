@@ -25,11 +25,11 @@
     margin: 0 0 5px 0;
   }
 
-  p {
+  .note-item {
     font-size: 15px;
     font-weight: 300;
-    margin: 0;
     text-decoration: none;
+    margin: 0;
   }
 }
 
@@ -47,8 +47,13 @@
   visibility: hidden;
 }
 
-
-
 .fa-plus {
   color: $dkGrey
+}
+
+.completed-view {
+  text-decoration: line-through;
+  color: $ltGrey;
+  margin: 0;
+
 }
