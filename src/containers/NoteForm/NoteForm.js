@@ -219,5 +219,7 @@ NoteForm.propTypes = {
   listItem: PropTypes.string,
   list: PropTypes.array,
   id: PropTypes.number,
-  submitted: PropTypes.bool
+  background: PropTypes.string,
+  inFocus: PropTypes.bool,
+  changesMade: PropTypes.bool
 }
