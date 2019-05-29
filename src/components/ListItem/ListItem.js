@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ListItem extends Component {
   state = {
@@ -79,3 +80,9 @@ class ListItem extends Component {
 }
 
 export default ListItem;
+
+ListItem.propTypes = {
+  listItem: PropTypes.object,
+  completed: PropTypes.bool,
+  inFocus: PropTypes.bool
+}

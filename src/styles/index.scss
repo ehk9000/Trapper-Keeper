@@ -1,7 +1,7 @@
 @import './normalize';
 @import './variables';
-@import '../containers/App/App';
+@import '../components/App/App';
 @import '../containers/NoteForm/NoteForm';
 @import '../containers/NotesContainer/NotesContainer';
 @import '../components/Note/Note';
-@import '../containers/ListItem/ListItem'
+@import '../components/ListItem/ListItem'
