@@ -11,11 +11,10 @@ export class NotesContainer extends Component {
     this.props.fetchAllNotes();
   }
 
-  render() {
+  assignDisplayNotes = () => {
+    let { notes, location, fetchDeleteNote } = this.props;
     let displayNotes;
-    let { notes, location, fetchDeleteNote} = this.props;
-    let notePopup;
-
+    
     if (notes.length) {  
       displayNotes = notes.map(note => 
         <Note {...note} key={note.id} fetchDeleteNote={fetchDeleteNote} />
@@ -26,6 +25,13 @@ export class NotesContainer extends Component {
         <p>Notes will display here</p>
       </div>
     }
+
+    return displayNotes;
+  }
+
+  assignNotePopup = () => {
+    const { notes, location } = this.props;
+    let notePopup;
 
     if (location.pathname === "/new-note" ) {
       notePopup = 
@@ -48,9 +54,15 @@ export class NotesContainer extends Component {
       }
     }
 
+    return notePopup;
+  }
+
+  render() {
+    const displayNotes = this.assignDisplayNotes();
+    const notePopup = this.assignNotePopup();
+
     return (
-      <div className="main-container">
-        <div className="flex-container">
+      <div>
           <div className="sidebar">
             <Link to="/new-note" className="add-link">
               <i className="fas fa-plus add-btn"></i>     
@@ -59,7 +71,6 @@ export class NotesContainer extends Component {
           <section className="notes-container">
             {displayNotes}
           </section>
-        </div>
         {notePopup}
       </div>
     );

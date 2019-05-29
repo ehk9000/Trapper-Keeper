@@ -126,6 +126,32 @@ describe('NoteForm', () => {
     expect(mockFetchDeleteNote).toHaveBeenCalledWith('abc123');
   });
 
+  it('should change color', () => {
+    const mockEvent = {
+      target: { value: '#999999' }
+    }
+
+    wrapper.instance().colorChange(mockEvent);
+
+    expect(wrapper.state('background')).toEqual('#999999')
+  });
+
+  it('should update state on focus', () => {
+    expect(wrapper.state('inFocus')).toEqual(false);
+
+    wrapper.instance().focusInput();
+
+    expect(wrapper.state('inFocus')).toEqual(true);
+  });
+
+  it('should update state on focus out', () => {
+    wrapper.setState({ inFocus: true });
+
+    wrapper.instance().focusOutInput();
+
+    expect(wrapper.state('inFocus')).toEqual(false)
+  });
+
   describe('mapStateToProps', () => {
     it('should return a props object with the notes array', () => {
       const mockNotes = {

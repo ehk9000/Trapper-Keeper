@@ -89,7 +89,6 @@ export class NoteForm extends Component {
   }
 
   blurInput = (e) => {
-    console.log('blur')
     if (e.key === 'Enter') {
       e.target.blur();
     }
@@ -102,10 +101,12 @@ export class NoteForm extends Component {
   }
 
   colorChange = (e) => {
-    const { value } = e.target
+    const { value } = e.target;
+
     this.setState({
-      background: value
-    })
+      background: value,
+      changesMade: true
+    });
   }
           
   focusInput = () => {
@@ -120,12 +121,9 @@ export class NoteForm extends Component {
     });
   }
 
-  render() {
+  assignIncompletedListItems = () => {
     let incompletedList;
     let incompletedListItems;
-    let completedList;
-    let completedListItems;
-    let btnText;
 
     if (this.state.list.length) {
       incompletedList = this.state.list.filter(item => !item.completed);
@@ -137,21 +135,42 @@ export class NoteForm extends Component {
           deleteListItem={this.deleteListItem}
           blurInput={this.blurInput}
           key={item.id} /> );
-
-      completedList = this.state.list.filter(item => item.completed);
-
-      completedListItems = completedList.map(item => 
-        <ListItem 
-          {...item} 
-          updateListItem={this.updateListItem}
-          deleteListItem={this.deleteListItem}
-          blurInput={this.blurInput}
-          key={item.id} /> );
     }
+
+    return incompletedListItems;
+  }
+
+  assignCompletedListItems = () => {
+    let completedList;
+    let completedListItems;
+
+    completedList = this.state.list.filter(item => item.completed);
+
+    completedListItems = completedList.map(item => 
+      <ListItem 
+        {...item} 
+        updateListItem={this.updateListItem}
+        deleteListItem={this.deleteListItem}
+        blurInput={this.blurInput}
+        key={item.id} /> );
+
+    return completedListItems;
+  }
+
+  assignBtnText = () => {
+    let btnText;
 
     btnText = this.state.changesMade
       ? 'Save'
       : 'Close';
+
+    return btnText;
+  }
+
+  render() {
+    const incompletedListItems = this.assignIncompletedListItems();
+    const completedListItems = this.assignCompletedListItems();
+    const btnText = this.assignBtnText();
 
     return (
       <div className="note-form-bg">
@@ -170,7 +189,7 @@ export class NoteForm extends Component {
             <div className={this.state.inFocus
                   ? 'focused-item new-item-input'
                   : 'unfocused-item new-item-input'}>
-              <i class="fas fa-plus"></i>
+              <i className="fas fa-plus"></i>
               <input 
                 type="text"
                 placeholder="Add list item"
@@ -202,7 +221,7 @@ export class NoteForm extends Component {
   }
 }
 
-export const mapStateToProps = ({notes}) => ({
+export const mapStateToProps = ({ notes }) => ({
   notes
 });
 
