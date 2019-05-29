@@ -32,6 +32,11 @@
     font-size: 1.3em;
     padding: 5px 0 10px 0;
   }
+
+  hr {
+    border: .5px solid;
+    color: #888;
+  }
 }
 
 .fa-plus {
@@ -48,7 +53,7 @@
 
 .new-item-input {
   .fa-plus {
-    color: #999;
+    color: #888;
     margin: 0 8px 0 0;
   }
 
@@ -65,7 +70,8 @@
 }
 
 .save-btn,
-.fa-trash-alt {
+.fa-trash-alt,
+.fa-palette {
   color: #888;
   cursor: pointer;
   padding: 5px 0;

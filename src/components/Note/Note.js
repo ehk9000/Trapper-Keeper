@@ -25,7 +25,7 @@ const Note = (props) => {
           {completedItems}
         </article>
       </Link>
-      <i className="far fa-trash-alt delete-btn" onClick={() => props.fetchDeleteNote(id)} ></i>
+      <button className="delete-btn"><i className="far fa-trash-alt" onClick={() => props.fetchDeleteNote(id)}></i></button>
     </section>
   );
 }
