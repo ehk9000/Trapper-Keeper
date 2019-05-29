@@ -37,7 +37,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 
-## WireFrame
+## Wireframe
 <img width="946" alt="Screen Shot 2019-05-21 at 5 11 14 PM" src="https://user-images.githubusercontent.com/41968928/58136544-aa86c200-7beb-11e9-87f2-17d3e05dc216.png">
 <img width="941" alt="Screen Shot 2019-05-21 at 5 11 43 PM" src="https://user-images.githubusercontent.com/41968928/58136546-abb7ef00-7beb-11e9-8495-f9b87fa10184.png">
 
