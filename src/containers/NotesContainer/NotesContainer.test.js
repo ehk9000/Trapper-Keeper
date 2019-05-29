@@ -5,21 +5,26 @@ import {
   mapDispatchToProps
 } from "./NotesContainer";
 import { fetchAllNotes } from "../../thunks/fetchAllNotes";
+import { fetchDeleteNote } from "../../thunks/fetchDeleteNote";
+
 import { shallow } from "enzyme";
 import NoteForm from "../NoteForm/NoteForm";
 
 jest.mock("../../thunks/fetchAllNotes");
-jest.mock("../NoteForm/NoteForm");
+jest.mock("../../thunks/fetchDeleteNote");
 
-const mockNotes = [
-    { title: "add global variable to test", list: [{ item: "groceries" }, { item: "toothpaste" }] }
-  ];
+jest.mock("../NoteForm/NoteForm");
 
 describe("NotesContainer", () => {
   let wrapper;
   let mockLocation;
+  let mockNotes;
+
   beforeEach(() => {
     mockLocation = { pathname: "/new-note" };
+    mockNotes = [
+        { title: "add global variable to test", list: [{ item: "groceries" }, { item: "toothpaste" }] }
+      ];
     wrapper = shallow(
       <NotesContainer
         fetchAllNotes={fetchAllNotes}
@@ -60,8 +65,10 @@ describe("NotesContainer", () => {
     });
 
     it("should match snapshot if no notes are present", () => {
+      mockNotes = [];
+
       wrapper = shallow(
-        <NotesContainer fetchAllNotes={fetchAllNotes} location={mockLocation} />
+        <NotesContainer fetchAllNotes={fetchAllNotes} location={mockLocation} notes={mockNotes}/>
       );
       expect(wrapper).toMatchInlineSnapshot(`ShallowWrapper {}`);
     });
@@ -79,15 +86,30 @@ describe("NotesContainer", () => {
   });
 
   describe("mapDispatchToProps", () => {
-    it("should map dispatch to props", () => {
+    it("should map fetchAllNotes dispatch to props", () => {
       const mockDispatch = jest.fn();
 
-       fetchAllNotes.mockImplementation(() => {});
+      const props = mapDispatchToProps(mockDispatch);
 
-      const dispatchReturned = mapDispatchToProps(mockDispatch);
-      const expected = { fetchAllNotes: (expect.any(Function)) };
+      const thunk = fetchAllNotes();
       
-      expect(dispatchReturned).toEqual(expected);
+      props.fetchAllNotes();
+      
+      expect(mockDispatch).toHaveBeenCalledWith(thunk);
+    });
+  });
+
+  describe("mapDispatchToProps", () => {
+    it("should map fetchDeleteNote dispatch to props", () => {
+      const mockDispatch = jest.fn();
+
+      const props = mapDispatchToProps(mockDispatch);
+
+      const thunk = fetchDeleteNote(mockNotes[0].id);
+      
+      props.fetchDeleteNote();
+      
+      expect(mockDispatch).toHaveBeenCalledWith(thunk);
     });
   });
 });
