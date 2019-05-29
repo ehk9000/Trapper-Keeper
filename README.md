@@ -25,11 +25,11 @@ The goal of this project is to create a simplified version of Google Keep. The r
 * ESLint
 
 ## `clone these two Repos`
-frontend https://github.com/ehk9000/Trapper-Keeper
-backend https://github.com/tiffanybacher/trapper-keeper-api
+Frontend https://github.com/ehk9000/Trapper-Keeper
+Backend https://github.com/tiffanybacher/trapper-keeper-api
 
 ## `npm install`
-run npm install on each repo
+Run npm install on each repo
 
 ## `npm start`
 Runs the app in the development mode.<br>
