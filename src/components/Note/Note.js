@@ -21,7 +21,7 @@ const Note = (props) => {
         <article>
           <h3>{title}</h3>
           {incompleteItems}
-          <hr />
+          {completedItems.length ? <hr /> : null}
           {completedItems}
         </article>
       </Link>
