@@ -34,15 +34,6 @@ describe('NoteForm', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should have a default state', () => {
-    expect(wrapper.state()).toEqual({
-      title: '',
-      list: [],
-      listItem: '',
-      id: null
-    });
-  });
-
   it('should update title or list item with keypress', () => {
     expect(wrapper.state('title')).toEqual('');
 
@@ -133,6 +124,32 @@ describe('NoteForm', () => {
     wrapper.find('.fa-trash-alt').simulate('click');
 
     expect(mockFetchDeleteNote).toHaveBeenCalledWith('abc123');
+  });
+
+  it('should change color', () => {
+    const mockEvent = {
+      target: { value: '#999999' }
+    }
+
+    wrapper.instance().colorChange(mockEvent);
+
+    expect(wrapper.state('background')).toEqual('#999999')
+  });
+
+  it('should update state on focus', () => {
+    expect(wrapper.state('inFocus')).toEqual(false);
+
+    wrapper.instance().focusInput();
+
+    expect(wrapper.state('inFocus')).toEqual(true);
+  });
+
+  it('should update state on focus out', () => {
+    wrapper.setState({ inFocus: true });
+
+    wrapper.instance().focusOutInput();
+
+    expect(wrapper.state('inFocus')).toEqual(false)
   });
 
   describe('mapStateToProps', () => {
