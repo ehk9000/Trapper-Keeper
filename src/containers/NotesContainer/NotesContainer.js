@@ -12,7 +12,7 @@ export class NotesContainer extends Component {
   }
 
   assignDisplayNotes = () => {
-    let { notes, location, fetchDeleteNote } = this.props;
+    let { notes, fetchDeleteNote } = this.props;
     let displayNotes;
     
     if (notes.length) {  

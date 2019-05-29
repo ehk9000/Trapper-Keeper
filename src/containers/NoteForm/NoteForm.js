@@ -15,7 +15,7 @@ export class NoteForm extends Component {
       list: [],
       listItem: '',
       id: null,
-      background: '',
+      background: '#FFF',
       inFocus: false,
       changesMade: false
     }
@@ -66,7 +66,7 @@ export class NoteForm extends Component {
     if (this.state.id) {
       this.props.fetchPutNote({ title, list, id, background });
     } else {
-      this.props.fetchAddNote({ title, list, id: Date.now() });
+      this.props.fetchAddNote({ title, list, id: Date.now(), background });
     }
 
     this.setState({ list:[], title: ''});
