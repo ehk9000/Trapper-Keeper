@@ -1,4 +1,4 @@
-import { setLoading, setError, deleteNote } from '../actions/index';
+import { setLoading, setError, deleteNote } from '../actions/';
 
 export const fetchDeleteNote = (id) => {
   return async (dispatch) => {
