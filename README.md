@@ -1,7 +1,9 @@
 
 # Trapper Keeper
 
-## Deployed at: [Trapper-Keeper](https://trapper-keeper-ui.herokuapp.com/)
+## Deployment 
+Deployed at: https://trapper-keeper-ui.herokuapp.com/
+Our backend repo can be found at https://github.com/ehk9000/trapper-keeper-api
 
 
 ## Description: 
