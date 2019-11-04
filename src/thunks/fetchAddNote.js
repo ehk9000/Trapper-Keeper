@@ -2,7 +2,7 @@ import { addNote, setLoading, setError } from '../actions/index';
 
 export const fetchAddNote = (note) => {
   return async (dispatch) => {
-    const base = 'https://trapper-keeper-api.herokuapp.com'
+    const base = 'https://trapper-keeper-api.herokuapp.com';
     const url = `${base}/api/v1/notes`;
     const body = {
       title: note.title,

@@ -17,7 +17,8 @@ export const fetchPutNote = (note) => {
       body: JSON.stringify(body)
     }
 
-    const url = `http://localhost:3001/api/v1/notes/${id}`;
+    const base = 'https://trapper-keeper-api.herokuapp.com';
+    const url = `${base}/api/v1/notes/${id}`;
 
     try {
       dispatch(setLoading(true));
