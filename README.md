@@ -1,8 +1,8 @@
 
 # Trapper Keeper
 
-## Deployed at:
-[Trapper-Keeper](https://trapper-keeper-ui.herokuapp.com/)
+## Deployed at: [Trapper-Keeper](https://trapper-keeper-ui.herokuapp.com/)
+
 
 ## Description: 
 A three-person project that replicates the note taking service Google Keep. Users can make unlimited list items per note, as well as change the color of the note itself. The goal of the project was to create our first Node and Express server, in addition to making a complex and dynamic form.
